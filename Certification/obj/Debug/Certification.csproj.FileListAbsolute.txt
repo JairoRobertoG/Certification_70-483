@@ -4,3 +4,9 @@ c:\users\jgome\documents\visual studio 2015\Projects\Certification\Certification
 c:\users\jgome\documents\visual studio 2015\Projects\Certification\Certification\obj\Debug\Certification.csprojResolveAssemblyReference.cache
 c:\users\jgome\documents\visual studio 2015\Projects\Certification\Certification\obj\Debug\Certification.exe
 c:\users\jgome\documents\visual studio 2015\Projects\Certification\Certification\obj\Debug\Certification.pdb
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.exe.config
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.exe
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.pdb
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.exe
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.pdb
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.csprojResolveAssemblyReference.cache
