@@ -1,0 +1,8 @@
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\bin\Debug\CertificationInterface.exe.config
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\bin\Debug\CertificationInterface.exe
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\bin\Debug\CertificationInterface.pdb
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\obj\Debug\CertificationInterface.csprojResolveAssemblyReference.cache
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\obj\Debug\CertificationInterface.Properties.Resources.resources
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\obj\Debug\CertificationInterface.csproj.GenerateResource.Cache
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\obj\Debug\CertificationInterface.exe
+C:\Users\jgome\Documents\GitHub\Certification_70-483\CertificationInterface\obj\Debug\CertificationInterface.pdb
