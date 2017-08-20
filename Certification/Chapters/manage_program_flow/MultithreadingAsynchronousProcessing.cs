@@ -85,9 +85,35 @@ namespace Certification.Chapters.manage_program_flow
             t.Join();
         }
 
+        //LISTING 1-5 Using the ThreadStaticAttribute
+        [ThreadStatic]
+        public static int _filed_thread_static_attribut;
+
+        public void TopicThreadStaticAttribute()
+        {
+            new Thread(() =>
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    _filed_thread_static_attribut++;
+                    Console.WriteLine("Thread A: {0}", _field);
+                }
+            }).Start();
+
+            new Thread(() => 
+            {
+                for (int x = 0; x < 10; x++)
+                {
+                    _filed_thread_static_attribut++;
+                    Console.WriteLine("Thread B: {0}", _field);
+                }
+            }).Start();
+
+            Console.ReadKey();
+        }
 
 
-
+        //LISTING 1 - 6 Using ThreadLocal<T>
         public static ThreadLocal<int> _field =
             new ThreadLocal<int>(() =>
             {
@@ -114,5 +140,62 @@ namespace Certification.Chapters.manage_program_flow
 
             Console.ReadKey();
         }
+
+        //Thread pools
+        //LISTING 1-7 Queuing some work to the thread pool
+        public void TopicQueuingSomeWorkTreadPool()
+        {
+            ThreadPool.QueueUserWorkItem((s) =>
+            {
+                Console.WriteLine("Working on a thread from threadpool");
+            });
+
+            Console.ReadLine();
+        }
+
+        //Using Tasks
+        //LISTING 1-8 Starting a new Task
+        public void StartingNewTask()
+        {
+            Task t = Task.Run(() =>
+            {
+                for (int x = 0; x < 100; x++)
+                {
+                    Console.Write("*");
+                }
+            });
+
+            t.Wait();
+        }
+
+        //Listing 1-9 Using a Task that returns a value
+        public void  UsingTaskReturnValue()
+        {
+            Task<int> t = Task.Run(() =>
+            {
+                return 42;
+            });
+
+            Console.Write(t.Result.ToString());
+        }
+
+        //LISTING 1-10 Adding a continuation
+        public void AddingContinuation()
+        {
+            Task<int> t = Task.Run(() =>
+            {
+
+                return 42;
+            }).ContinueWith((i) =>
+            {
+                return i.Result * 2;
+            });
+            
+            Console.WriteLine(t.Result); //Display 84
+            Console.ReadLine();
+        }
+
+        //LISTING 1-11 Scheduling different continuation tasks
+
     }
 }

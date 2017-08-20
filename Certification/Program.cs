@@ -13,7 +13,7 @@ namespace Certification
             multithreading_asynchronous_processing = new MultithreadingAsynchronousProcessing();
 
             //LISTING 1-1 Creating a thread with the Thread class
-            multithreading_asynchronous_processing.TopicThreadClass();
+            //multithreading_asynchronous_processing.TopicThreadClass();
 
             //LISTING 1-2 Using a background thread
             //multithreading_asynchronous_processing.TopicBackgroundThread();
@@ -23,6 +23,24 @@ namespace Certification
 
             //LISTING 1-4 Stopping a thread
             //multithreading_asynchronous_processing.TopicStoppingThread(false);
+
+            //LISTING 1-5 Using the ThreadStaticAttribute
+            //multithreading_asynchronous_processing.TopicThreadStaticAttribute();
+
+            //LISTING 1 - 6 Using ThreadLocal<T>
+            //multithreading_asynchronous_processing.TopicThreadLocal();
+
+            //LISTING 1-7 Queuing some work to the thread pool
+            //multithreading_asynchronous_processing.TopicQueuingSomeWorkTreadPool();
+
+            //LISTING 1-8 Starting a new Task
+            //multithreading_asynchronous_processing.StartingNewTask();
+
+            //Listing 1-9 Using a Task that returns a value
+            //multithreading_asynchronous_processing.UsingTaskReturnValue();
+
+            //LISTING 1-10 Adding a continuation
+            multithreading_asynchronous_processing.AddingContinuation();
         }
     }
 }
