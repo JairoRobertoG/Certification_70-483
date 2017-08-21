@@ -40,7 +40,17 @@ namespace Certification
             //multithreading_asynchronous_processing.UsingTaskReturnValue();
 
             //LISTING 1-10 Adding a continuation
-            multithreading_asynchronous_processing.AddingContinuation();
+            //multithreading_asynchronous_processing.AddingContinuation();
+
+            //LISTING 1-11 Scheduling different continuation tasks
+            //multithreading_asynchronous_processing.SchedulingDufferentContinuationTask();
+
+            //LISTING 1-12 Attaching child tasks to a parent task
+            //multithreading_asynchronous_processing.AttachingChildTasksToParentTask();
+
+            //LISTING 1-13 Using a TaskFactory
+            multithreading_asynchronous_processing.UsingTaskFactory();
+
         }
     }
 }

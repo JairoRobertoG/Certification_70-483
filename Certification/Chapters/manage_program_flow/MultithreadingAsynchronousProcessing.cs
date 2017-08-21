@@ -100,7 +100,7 @@ namespace Certification.Chapters.manage_program_flow
                 }
             }).Start();
 
-            new Thread(() => 
+            new Thread(() =>
             {
                 for (int x = 0; x < 10; x++)
                 {
@@ -169,7 +169,7 @@ namespace Certification.Chapters.manage_program_flow
         }
 
         //Listing 1-9 Using a Task that returns a value
-        public void  UsingTaskReturnValue()
+        public void UsingTaskReturnValue()
         {
             Task<int> t = Task.Run(() =>
             {
@@ -190,12 +190,89 @@ namespace Certification.Chapters.manage_program_flow
             {
                 return i.Result * 2;
             });
-            
+
             Console.WriteLine(t.Result); //Display 84
             Console.ReadLine();
         }
 
         //LISTING 1-11 Scheduling different continuation tasks
+        public void SchedulingDufferentContinuationTask()
+        {
+            Task<int> t = Task.Run(() =>
+            {
+                return 42;
+            });
+
+            t.ContinueWith((i) =>
+            {
+                Console.WriteLine("Canceled");
+                Console.ReadLine();
+            }, TaskContinuationOptions.OnlyOnCanceled);
+
+            t.ContinueWith((i) =>
+            {
+                Console.WriteLine("Fauled");
+                Console.ReadLine();
+            }, TaskContinuationOptions.OnlyOnFaulted);
+
+            var completedTask = t.ContinueWith((i) =>
+            {
+                Console.WriteLine("Completed");
+                Console.ReadLine();
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+
+            completedTask.Wait();
+
+        }
+
+        //LISTING 1-12 Attaching child tasks to a parent task
+        public void AttachingChildTasksToParentTask()
+        {
+            Task<Int32[]> parent = Task.Run(() =>
+            {
+                var results = new Int32[3];
+                new Task(() => results[0] = 0,
+                TaskCreationOptions.AttachedToParent).Start();
+                new Task(() => results[1] = 1,
+                TaskCreationOptions.AttachedToParent).Start();
+                new Task(() => results[2] = 2,
+                TaskCreationOptions.AttachedToParent).Start();
+                return results;
+            });
+
+            var finalTask = parent.ContinueWith(
+                parentTask =>
+                {
+                    foreach (int i in parentTask.Result)
+                        Console.WriteLine(i);
+                });
+
+            Console.ReadLine();
+            finalTask.Wait();
+        }
+
+        //LISTING 1-13 Using a TaskFactory
+        public void UsingTaskFactory()
+        {
+            Task<Int32[]> parent = Task.Run(() =>
+            {
+                var results = new Int32[3];
+                TaskFactory tf = new TaskFactory(TaskCreationOptions.AttachedToParent,
+                TaskContinuationOptions.ExecuteSynchronously);
+                tf.StartNew(() => results[0] = 0);
+                tf.StartNew(() => results[1] = 1);
+                tf.StartNew(() => results[2] = 2);
+                return results;
+            });
+            var finalTask = parent.ContinueWith(
+            parentTask => {
+                foreach (int i in parentTask.Result)
+                    Console.WriteLine(i);
+            });
+
+            Console.ReadLine();
+            finalTask.Wait();
+        }
 
     }
 }

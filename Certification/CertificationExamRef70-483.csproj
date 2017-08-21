@@ -48,6 +48,7 @@
     <Compile Include="Chapters\manage_program_flow\MultithreadingAsynchronousProcessing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\TextBoxWriter .cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Certification;
 using Certification.Chapters.manage_program_flow;
 using System.Diagnostics;
+using CertificationInterface.Utilities;
 
 namespace CertificationInterface
 {
@@ -25,12 +26,11 @@ namespace CertificationInterface
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-                
         }
 
         private void btn_thread_class_Click(object sender, EventArgs e)
         {
-            multithreading_asynchronous_processing.TopicThreadClass();
+            multithreading_asynchronous_processing.UsingTaskFactory();
         }
     }
 }
