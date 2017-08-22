@@ -49,8 +49,10 @@ namespace Certification
             //multithreading_asynchronous_processing.AttachingChildTasksToParentTask();
 
             //LISTING 1-13 Using a TaskFactory
-            multithreading_asynchronous_processing.UsingTaskFactory();
+            //multithreading_asynchronous_processing.UsingTaskFactory();
 
+            //LISTING 1-14 Using Task.WaitAll
+            multithreading_asynchronous_processing.UsingTaskWaitAll();
         }
     }
 }
