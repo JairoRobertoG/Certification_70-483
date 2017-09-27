@@ -28,47 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_thread_class = new System.Windows.Forms.Button();
-            this.txtConsoleView = new System.Windows.Forms.TextBox();
+            this.btn_ConfigureAwait = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btn_thread_class
+            // btn_ConfigureAwait
             // 
-            this.btn_thread_class.Location = new System.Drawing.Point(28, 37);
-            this.btn_thread_class.Name = "btn_thread_class";
-            this.btn_thread_class.Size = new System.Drawing.Size(274, 23);
-            this.btn_thread_class.TabIndex = 0;
-            this.btn_thread_class.Text = "LISTING 1-1 Creating a thread with the Thread class";
-            this.btn_thread_class.UseVisualStyleBackColor = true;
-            this.btn_thread_class.Click += new System.EventHandler(this.btn_thread_class_Click);
-            // 
-            // txtConsoleView
-            // 
-            this.txtConsoleView.Location = new System.Drawing.Point(28, 123);
-            this.txtConsoleView.Multiline = true;
-            this.txtConsoleView.Name = "txtConsoleView";
-            this.txtConsoleView.Size = new System.Drawing.Size(384, 101);
-            this.txtConsoleView.TabIndex = 1;
+            this.btn_ConfigureAwait.Location = new System.Drawing.Point(137, 47);
+            this.btn_ConfigureAwait.Name = "btn_ConfigureAwait";
+            this.btn_ConfigureAwait.Size = new System.Drawing.Size(96, 23);
+            this.btn_ConfigureAwait.TabIndex = 0;
+            this.btn_ConfigureAwait.Text = "Configure Await";
+            this.btn_ConfigureAwait.UseVisualStyleBackColor = true;
+            this.btn_ConfigureAwait.Click += new System.EventHandler(this.btn_ConfigureAwait_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 261);
-            this.Controls.Add(this.txtConsoleView);
-            this.Controls.Add(this.btn_thread_class);
+            this.Controls.Add(this.btn_ConfigureAwait);
             this.Name = "MainWindow";
             this.Text = "Certification Exam Ref 70-483";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btn_thread_class;
-        private System.Windows.Forms.TextBox txtConsoleView;
+        private System.Windows.Forms.Button btn_ConfigureAwait;
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -299,5 +300,96 @@ namespace Certification.Chapters.manage_program_flow
             Task.WaitAll(tasks);
         }
 
+        //LISTING 1-15 Using Task.WaitAny
+        public void UsingTaskWaitAny()
+        {
+            Task<int>[] tasks = new Task<int>[3];
+
+            tasks[0] = Task.Run(() => { Thread.Sleep(2000); return 1; });
+            tasks[1] = Task.Run(() => { Thread.Sleep(1000); return 2; });
+            tasks[2] = Task.Run(() => { Thread.Sleep(3000); return 3; });
+
+            while (tasks.Length > 0)
+            {
+                int i = Task.WaitAny(tasks);
+                Task<int> completedTask = tasks[i];
+
+                Console.WriteLine(completedTask.Result);
+
+                var temp = tasks.ToList();
+                temp.RemoveAt(i);
+
+                tasks = temp.ToArray();
+            }
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-16 Using Parallel.For and Parallel.Foreach
+        public void UsingParallelForParallelForeach()
+        {
+            Parallel.For(0, 10, i =>
+            {
+                Thread.Sleep(1000);
+            });
+
+            var numbers = Enumerable.Range(0, 10);
+            Parallel.ForEach(numbers, i =>
+            {
+                Thread.Sleep(1000);
+            });
+        }
+
+        //LISTING 1-17 Using Parallel.Break
+        public void UsingParallelBreak()
+        {
+            ParallelLoopResult result = Parallel.
+            For(0, 1000, (int i, ParallelLoopState loopState) =>
+            {
+                if (i == 500)
+                {
+                    Console.WriteLine("Breaking loop");
+                    loopState.Break();
+                }
+
+                Console.ReadLine();
+                return;
+            });
+        }
+
+        //LISTING 1-18 async and await
+        public void AsyncAndAwait()
+        {
+            string result = DownloadContent().Result;
+            Console.WriteLine(result);
+            Console.ReadLine();
+        }
+
+        public async Task<string> DownloadContent()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string result = await client.GetStringAsync("http://learn-english-application.tk/");
+                return result;
+            }
+        }
+
+        //LISTING 1-19 Scalability versus responsiveness
+        public Task SleepAsyncA(int millisecondsTimeout)
+        {
+            return Task.Run(() => Thread.Sleep(millisecondsTimeout));
+        }
+
+        public Task SleepAsyncB(int millisecondsTimeout)
+        {
+            TaskCompletionSource<bool> tcs = null;
+            var t = new Timer(delegate { tcs.TrySetResult(true); }, null, -1, -1);
+            tcs = new TaskCompletionSource<bool>(t);
+            t.Change(millisecondsTimeout, -1);
+            return tcs.Task;
+        }
+
+        //LISTING 1-20 Using ConfigureAwait
+        //Graphic Interface
     }
 }

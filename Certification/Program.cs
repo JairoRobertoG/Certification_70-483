@@ -1,7 +1,7 @@
 ﻿using Certification.Chapters.manage_program_flow;
+using Certification.StudyGuide_MCSD_;
 using System;
 using System.Threading;
-
 
 namespace Certification
 {
@@ -9,8 +9,8 @@ namespace Certification
     {
         public static void Main()
         {
-            MultithreadingAsynchronousProcessing multithreading_asynchronous_processing;
-            multithreading_asynchronous_processing = new MultithreadingAsynchronousProcessing();
+            MultithreadingAsynchronousProcessing multithreading_asynchronous_processing = new MultithreadingAsynchronousProcessing();
+            StudyGuide study_guide = new StudyGuide();
 
             //LISTING 1-1 Creating a thread with the Thread class
             //multithreading_asynchronous_processing.TopicThreadClass();
@@ -52,7 +52,24 @@ namespace Certification
             //multithreading_asynchronous_processing.UsingTaskFactory();
 
             //LISTING 1-14 Using Task.WaitAll
-            multithreading_asynchronous_processing.UsingTaskWaitAll();
+            //multithreading_asynchronous_processing.UsingTaskWaitAll();
+
+            //LISTING 1-15 Using Task.WaitAny
+            //multithreading_asynchronous_processing.UsingTaskWaitAny();
+
+            //LISTING 1-16 Using Parallel.For and Parallel.Foreach
+            //multithreading_asynchronous_processing.UsingParallelForParallelForeach();
+
+            //LISTING 1-17 Using Parallel.Break
+            //multithreading_asynchronous_processing.UsingParallelBreak();
+
+            //LISTING 1-18 async and await
+            //multithreading_asynchronous_processing.AsyncAndAwait();
+
+            //LISTING 1-19 Scalability versus responsiveness
+            multithreading_asynchronous_processing.SleepAsyncB(5000);
+
+
         }
     }
 }
