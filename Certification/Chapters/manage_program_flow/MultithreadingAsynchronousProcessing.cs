@@ -391,5 +391,92 @@ namespace Certification.Chapters.manage_program_flow
 
         //LISTING 1-20 Using ConfigureAwait
         //Graphic Interface
+
+        //LISTING 1-22 Using AsParallel
+        public void UsingAsParallel()
+        {
+            var numbers = Enumerable.Range(0, 100000000);
+            var parallelResult = numbers.AsParallel()
+            .Where(i => i % 2 == 0)
+            .ToArray();
+        }
+
+        //LISTING 1-23 Unordered parallel query
+        public void UnorderedPArallelQuery()
+        {
+            var numbers = Enumerable.Range(0, 10);
+            var parallelResult = numbers.AsParallel()
+            .Where(i => i % 2 == 0)
+            .ToArray();
+
+            foreach (int i in parallelResult)
+                Console.WriteLine(i);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-24 Ordered parallel query
+        public void OrderedParallelQuery()
+        {
+            var numbers = Enumerable.Range(0, 10);
+            var parallelResult = numbers.AsParallel().AsOrdered()
+            .Where(i => i % 2 == 0)
+            .ToArray();
+
+            foreach (int i in parallelResult)
+                Console.WriteLine(i);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-25 Making a parallel query sequential
+        public void MakingParallelQuerySecuential()
+        {
+            var numbers = Enumerable.Range(0, 20);
+            var parallelResult = numbers.AsParallel().AsOrdered()
+            .Where(i => i % 2 == 0).AsSequential();
+            foreach (int i in parallelResult.Take(5))
+                Console.WriteLine(i);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-26 Using ForAll
+        public void UsingForAll()
+        {
+            var numbers = Enumerable.Range(0, 20);
+            var parallelResult = numbers.AsParallel()
+            .Where(i => i % 2 == 0);
+            parallelResult.ForAll(e => Console.WriteLine(e));
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-27 Catching AggregateException
+        public bool IsEven(int i)
+        {
+            if(i % 10 == 0) throw new ArgumentException("i");
+            return i % 2 == 0;
+        }
+
+        public void CatchingAggregateException()
+        {
+            var numbers = Enumerable.Range(0, 20);
+
+            try
+            {
+                var parallelResult = numbers.AsParallel()
+                .Where(i => IsEven(i));
+                parallelResult.ForAll(e => Console.WriteLine(e));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine("There where { 0} exceptions",
+                e.InnerExceptions.Count);
+            }
+
+            Console.ReadLine();
+        }
+
     }
 }

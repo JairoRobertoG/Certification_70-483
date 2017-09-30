@@ -31,6 +31,7 @@ namespace CertificationInterface
         }
 
         //LISTING 1-20 Using ConfigureAwait
+        //LISTING 1-21 Continuing on a thread pool instead of the UI thread
         private async void btn_ConfigureAwait_Click(object sender, EventArgs e)
         {
             HttpClient httpClient = new HttpClient();

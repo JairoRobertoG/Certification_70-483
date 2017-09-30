@@ -67,9 +67,25 @@ namespace Certification
             //multithreading_asynchronous_processing.AsyncAndAwait();
 
             //LISTING 1-19 Scalability versus responsiveness
-            multithreading_asynchronous_processing.SleepAsyncB(5000);
+            //multithreading_asynchronous_processing.SleepAsyncB(5000);
 
+            //LISTING 1-22 Using AsParallel
+            //multithreading_asynchronous_processing.UsingAsParallel();
 
+            //LISTING 1-23 Unordered parallel query
+            //multithreading_asynchronous_processing.UnorderedPArallelQuery();
+
+            //LISTING 1-24 Ordered parallel query
+            //multithreading_asynchronous_processing.OrderedParallelQuery();
+
+            //LISTING 1-25 Making a parallel query sequential
+            //multithreading_asynchronous_processing.MakingParallelQuerySecuential();
+
+            //LISTING 1-26 Using ForAll
+            //multithreading_asynchronous_processing.UsingForAll();
+
+            //LISTING 1-27 Catching AggregateException
+            multithreading_asynchronous_processing.CatchingAggregateException();
         }
     }
 }
