@@ -453,7 +453,7 @@ namespace Certification.Chapters.manage_program_flow
         }
 
         //LISTING 1-27 Catching AggregateException
-        public bool IsEven(int i)
+        private bool IsEven(int i)
         {
             if(i % 10 == 0) throw new ArgumentException("i");
             return i % 2 == 0;
@@ -471,12 +471,14 @@ namespace Certification.Chapters.manage_program_flow
             }
             catch (AggregateException e)
             {
-                Console.WriteLine("There where { 0} exceptions",
+                Console.WriteLine("There where {0} exceptions",
                 e.InnerExceptions.Count);
             }
 
-            Console.ReadLine();
         }
+
+        //Using concurrent collections
+        //LISTING 1-28 Using BlockingCollection<T>
 
     }
 }

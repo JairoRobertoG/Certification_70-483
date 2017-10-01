@@ -85,7 +85,7 @@ namespace Certification
             //multithreading_asynchronous_processing.UsingForAll();
 
             //LISTING 1-27 Catching AggregateException
-            multithreading_asynchronous_processing.CatchingAggregateException();
+            //multithreading_asynchronous_processing.CatchingAggregateException();
         }
     }
 }
