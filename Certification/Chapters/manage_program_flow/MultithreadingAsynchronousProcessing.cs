@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -479,6 +478,272 @@ namespace Certification.Chapters.manage_program_flow
 
         //Using concurrent collections
         //LISTING 1-28 Using BlockingCollection<T>
+        public void UsingBlockingCollection()
+        {
+            BlockingCollection<string> col = new BlockingCollection<string>();
+            Task read = Task.Run(() =>
+            {
+                while (true)
+                {
+                    Console.WriteLine(col.Take());
+                }
+            });
 
+            Task write = Task.Run(() =>
+            {
+                while (true)
+                {
+                    string s = Console.ReadLine();
+                    if (string.IsNullOrWhiteSpace(s)) break;
+                    col.Add(s);
+                }
+            });
+            write.Wait();
+
+        }
+
+        //LISTING 1-29 Using GetConsumingEnumerable on a BlockingCollection
+        public void UsingGetConsumingEnumerableOnBlockingCollection()
+        {
+            BlockingCollection<string> col = new BlockingCollection<string>();
+            Task read = Task.Run(() =>
+            {
+                foreach (string v in col.GetConsumingEnumerable())
+                    Console.WriteLine(v);
+            });
+
+        }
+
+        //LISTING 1-30 Using a ConcurrentBag
+        public void UsingConcurrentBag()
+        {
+            ConcurrentBag<int> bag = new ConcurrentBag<int>();
+            bag.Add(42);
+            bag.Add(21);
+            int result;
+            if (bag.TryTake(out result))
+                Console.WriteLine(result);
+            if (bag.TryPeek(out result))
+                Console.WriteLine("There is a next item: {0}", result);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-31 Enumerating a ConcurrentBag
+        public void EnumeratingConcurrentBag()
+        {
+            ConcurrentBag<int> bag = new ConcurrentBag<int>();
+            Task.Run(() =>
+            {
+                bag.Add(42);
+                Thread.Sleep(1000);
+                bag.Add(21);
+            });
+            Task.Run(() =>
+            {
+                foreach (int i in bag)
+                    Console.WriteLine(i);
+            }).Wait();
+        }
+
+        //LISTING 1-32 Using a ConcurrentStack
+        public void UsingConcurrentStack()
+        {
+            ConcurrentStack<int> stack = new ConcurrentStack<int>();
+
+            stack.Push(42);
+            int result;
+
+            if (stack.TryPop(out result))
+                Console.WriteLine("Popped: {0}", result);
+
+            stack.PushRange(new int[] { 1, 2, 3 });
+            int[] values = new int[2];
+            stack.TryPopRange(values);
+
+            foreach (int i in values)
+                Console.WriteLine(i);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-33 Using a ConcurrentQueue.
+        public void UsingConcurrentQueue()
+        {
+            ConcurrentQueue<int> queue = new ConcurrentQueue<int>();
+            queue.Enqueue(42);
+            int result;
+            if (queue.TryDequeue(out result))
+                Console.WriteLine("Dequeued: {0}", result);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-34 Using a ConcurrentDictionary
+        public void UsingConcurrentDictionary()
+        {
+            var dict = new ConcurrentDictionary<string, int>();
+            if (dict.TryAdd("k1", 42))
+            {
+                Console.WriteLine("Added");
+            }
+            if (dict.TryUpdate("k1", 21, 42))
+            {
+                Console.WriteLine("42 updated to 21");
+            }
+            dict["k1"] = 42; // Overwrite unconditionally
+            int r1 = dict.AddOrUpdate("k1", 3, (s, i) => i * 2);
+            int r2 = dict.GetOrAdd("k2", 3);
+
+            Console.ReadLine();
+        }
+
+        //Objective 1.2: Manage multithreading
+        //LISTING 1-35 Accessing shared data in a multithreaded application
+        public void AccessingSharedDataInMultithreadedApplication()
+        {
+            int n = 0;
+
+            var up = Task.Run(() =>
+            {
+                for (int i = 0; i < 1000000; i++)
+                    n++;
+            });
+
+            for (int i = 0; i < 1000000; i++)
+                n--;
+
+            up.Wait();
+            Console.WriteLine(n);
+            Console.ReadLine();
+        }
+
+        //LISTING 1-36 Using the lock keyword
+        public void UsingLockKeyword()
+        {
+            int n = 0;
+            object _lock = new object();
+            var up = Task.Run(() =>
+            {
+                for (int i = 0; i < 1000000; i++)
+                    lock (_lock)
+                        n++;
+            });
+
+            for (int i = 0; i < 1000000; i++)
+                lock (_lock)
+                    n--;
+            up.Wait();
+            Console.WriteLine(n);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-37 Creating a deadlock
+        public void CreatingDeadlock()
+        {
+            object lockA = new object();
+            object lockB = new object();
+            var up = Task.Run(() =>
+            {
+                lock (lockA)
+                {
+                    Thread.Sleep(1000);
+                    lock (lockB)
+                    {
+                        Console.WriteLine("Locked A and B");
+                    }
+                }
+            });
+            lock (lockB)
+            {
+                lock (lockA)
+                {
+                    Console.WriteLine("Locked A and B");
+                }
+            }
+            up.Wait();
+        }
+
+        //LISTING 1-38 Generated code from a lock statement
+        public void GeneretedCodeFromLockStatment()
+        {
+            object gate = new object();
+            bool __lockTaken = false;
+            try
+            {
+                Monitor.Enter(gate, ref __lockTaken);
+            }
+            finally
+            {
+                if (__lockTaken)
+                    Monitor.Exit(gate);
+            }
+        }
+
+        //Volatile class
+        //LISTING 1-39 A potential problem with multithreaded code
+        private int _flag = 0;
+        private volatile int _value = 0;
+
+        public void Thread1()
+        {
+            _value = 5;
+            _flag = 1;
+        }
+        public void Thread2()
+        {
+            if (_flag == 1)
+                Console.WriteLine(_value);
+        }
+
+        public void PotencialProblemWithMultithreadedCode()
+        {
+            Thread1();
+            Thread2();
+        }
+
+        //The Interlocked class
+        //LISTING 1-40 Using the Interlocked class
+        public void UsingInterlockedClass()
+        {
+            int n = 0;
+            var up = Task.Run(() =>
+            {
+                for (int i = 0; i < 1000000; i++)
+                    Interlocked.Increment(ref n);
+            });
+            for (int i = 0; i < 1000000; i++)
+                Interlocked.Decrement(ref n);
+            up.Wait();
+            Console.WriteLine(n);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-41 Compare and exchange as a nonatomic operation
+        public void CompareExchangeAsNonatomicOperation()
+        {
+            int value = 1;
+            Task t1 = Task.Run(() =>
+            {
+                if (value == 1)
+                {
+                    // Removing the following line will change the output
+                    Thread.Sleep(1000);
+                    value = 2;
+                    
+                }
+            });
+
+            Task t2 = Task.Run(() =>
+            {
+                value = 3;
+            });
+
+            Task.WaitAll(t1, t2);
+            Console.WriteLine(value);
+            Console.ReadLine();
+        }
     }
 }

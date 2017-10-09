@@ -86,6 +86,45 @@ namespace Certification
 
             //LISTING 1-27 Catching AggregateException
             //multithreading_asynchronous_processing.CatchingAggregateException();
+
+            //LISTING 1-28 Using BlockingCollection<T>
+            //multithreading_asynchronous_processing.UsingBlockingCollection();
+
+            //LISTING 1-29 Using GetConsumingEnumerable on a BlockingCollection
+            //multithreading_asynchronous_processing.UsingGetConsumingEnumerableOnBlockingCollection();
+
+            //LISTING 1-30 Using a ConcurrentBag
+            //multithreading_asynchronous_processing.UsingConcurrentBag();
+
+            ////LISTING 1-31 Enumerating a ConcurrentBag
+            //multithreading_asynchronous_processing.EnumeratingConcurrentBag();
+
+            //LISTING 1-32 Using a ConcurrentStack
+            //multithreading_asynchronous_processing.UsingConcurrentStack();
+
+            //LISTING 1-33 Using a ConcurrentQueue.
+            //multithreading_asynchronous_processing.UsingConcurrentQueue();
+
+            //LISTING 1-34 Using a ConcurrentDictionary
+            //multithreading_asynchronous_processing.UsingConcurrentDictionary();
+
+            //LISTING 1-35 Accessing shared data in a multithreaded application
+            //multithreading_asynchronous_processing.AccessingSharedDataInMultithreadedApplication();
+
+            ////LISTING 1-36 Using the lock keyword
+            //multithreading_asynchronous_processing.UsingLockKeyword();
+
+            //LISTING 1-38 Generated code from a lock statement
+            //multithreading_asynchronous_processing.GeneretedCodeFromLockStatment();
+
+            ////LISTING 1-39 A potential problem with multithreaded code
+            //multithreading_asynchronous_processing.PotencialProblemWithMultithreadedCode();
+
+            //LISTING 1-40 Using the Interlocked class
+            //multithreading_asynchronous_processing.UsingInterlockedClass();
+
+            //LISTING 1-41 Compare and exchange as a nonatomic operation
+            multithreading_asynchronous_processing.CompareExchangeAsNonatomicOperation();
         }
     }
 }
