@@ -265,7 +265,8 @@ namespace Certification.Chapters.manage_program_flow
                 return results;
             });
             var finalTask = parent.ContinueWith(
-            parentTask => {
+            parentTask =>
+            {
                 foreach (int i in parentTask.Result)
                     Console.WriteLine(i);
             });
@@ -279,17 +280,20 @@ namespace Certification.Chapters.manage_program_flow
         {
             Task[] tasks = new Task[3];
 
-            tasks[0] = Task.Run(() => {
+            tasks[0] = Task.Run(() =>
+            {
                 Thread.Sleep(1000);
                 Console.WriteLine("1");
                 return 1;
             });
-            tasks[1] = Task.Run(() => {
+            tasks[1] = Task.Run(() =>
+            {
                 Thread.Sleep(1000);
                 Console.WriteLine("2");
                 return 2;
             });
-            tasks[2] = Task.Run(() => {
+            tasks[2] = Task.Run(() =>
+            {
                 Thread.Sleep(1000);
                 Console.WriteLine("3");
                 return 3;
@@ -454,7 +458,7 @@ namespace Certification.Chapters.manage_program_flow
         //LISTING 1-27 Catching AggregateException
         private bool IsEven(int i)
         {
-            if(i % 10 == 0) throw new ArgumentException("i");
+            if (i % 10 == 0) throw new ArgumentException("i");
             return i % 2 == 0;
         }
 
@@ -732,7 +736,7 @@ namespace Certification.Chapters.manage_program_flow
                     // Removing the following line will change the output
                     Thread.Sleep(1000);
                     value = 2;
-                    
+
                 }
             });
 
@@ -744,6 +748,344 @@ namespace Certification.Chapters.manage_program_flow
             Task.WaitAll(t1, t2);
             Console.WriteLine(value);
             Console.ReadLine();
+        }
+
+        //LISTING 1-42 Using a CancellationToken
+        public void UsingCacellationToken()
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+            Task task = Task.Run(() =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    Console.Write("*");
+                    Thread.Sleep(1000);
+                }
+            }, token);
+
+            Console.WriteLine("Press enter to stop the task");
+            Console.ReadLine();
+            cancellationTokenSource.Cancel();
+            Console.WriteLine("Press enter to end the application");
+            Console.ReadLine();
+        }
+
+        //LISTING 1-43 Throwing OperationCanceledException
+        public void ThrowingOperationCanceledException()
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+            Task task = Task.Run(() =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    Console.Write("*");
+                    Thread.Sleep(1000);
+                }
+                token.ThrowIfCancellationRequested();
+            }, token);
+            try
+            {
+                Console.WriteLine("Press enter to stop the task");
+                Console.ReadLine();
+                cancellationTokenSource.Cancel();
+                task.Wait();
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e.InnerExceptions[0].Message);
+            }
+            Console.WriteLine("Press enter to end the application");
+            Console.ReadLine();
+        }
+
+        //LISTING 1-44 Adding a continuation for canceled tasks
+        public void AddingContinuationCanceledTask()
+        {
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            CancellationToken token = cancellationTokenSource.Token;
+
+            Task task = Task.Run(() =>
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    Console.Write("*");
+                    Thread.Sleep(1000);
+                }
+            }, token).ContinueWith((t) =>
+            {
+                t.Exception.Handle((e) => true);
+                Console.WriteLine("You have canceled the task");
+            }, TaskContinuationOptions.OnlyOnCanceled);
+        }
+
+        //LISTING 1-45 Setting a timeout on a task
+        public void SettingTimeoutTask()
+        {
+            Task longRunning = Task.Run(() =>
+            {
+                Thread.Sleep(10000);
+            });
+            int index = Task.WaitAny(new[] { longRunning }, 1000);
+            if (index == -1)
+                Console.WriteLine("Task timed out");
+        }
+
+        //Objective 1.3: Implement program flow
+        //Working with Boolean expressions
+        //LISTING 1-46 A better readable nested if statement
+        public void BetterReadableNestedIfStatement()
+        {
+            int x = 42;
+            int y = 1;
+            int z = 42;
+            Console.WriteLine(x == y); // Displays false
+            Console.WriteLine(x == z); // Displays true
+        }
+
+        //LISTING 1-47 Boolean OR operator
+        public void BooleanOrOperator()
+        {
+            bool x = true;
+            bool y = false;
+            bool result = x || y;
+            Console.WriteLine(result); // Displays True
+        }
+
+        //LISTING 1-48 Short-circuiting the OR operator
+        private bool GetY()
+        {
+            Console.WriteLine("This method doesn’t get called");
+            return true;
+        }
+
+        public void OrShortCircuit()
+        {
+            bool x = true;
+            bool result = x || GetY();
+        }
+
+        //LISTING 1-49 Using the AND operator
+        public void UsingAndOperator()
+        {
+            int value = 42;
+            bool result = (0 < value) && (value < 100);
+        }
+
+        //LISTING 1-50 Using the AND operator
+        public void UsingAndOperator(string input)
+        {
+            bool result = (input != null) && (input.StartsWith("v"));
+            // Do something with the result
+        }
+
+        //LISTING 1-51 Using the XOR operator
+        public void UsingXOROperator()
+        {
+            bool a = true;
+            bool b = false;
+            Console.WriteLine(a ^ a); // False
+            Console.WriteLine(a ^ b); // True
+            Console.WriteLine(b ^ b); // False
+        }
+
+        //LISTING 1-52 Basic if statement
+        public void BasicIfStatement()
+        {
+            bool b = true;
+            if (b)
+                Console.WriteLine("True");
+        }
+
+        //LISTING 1-53 An if statement with code block
+        public void IfStatementWithCodeBlock()
+        {
+            bool b = true;
+            if (b)
+            {
+                Console.WriteLine("Both these lines");
+                Console.WriteLine("Will be executed");
+            }
+        }
+
+        //LISTING 1-54 Code blocks and scoping
+        public void CodeBlocksAndScoping()
+        {
+            bool b = true;
+            if (b)
+            {
+                int r = 42;
+                b = false;
+            }
+            // r is not accessible
+            // b is now false
+        }
+
+        //LISTING 1-55 Using an else statement
+        public void UsingAnElseStatement()
+        {
+            bool b = false;
+            if (b)
+            {
+                Console.WriteLine("True");
+            }
+            else
+            {
+                Console.WriteLine("False");
+            }
+        }
+
+        //LISTING 1-56 Using multiple if/else statements
+        public void UsingMultipleIfElseStatements()
+        {
+            bool b = false;
+            bool c = true;
+            if (b)
+            {
+                Console.WriteLine("b is true");
+            }
+            else if (c)
+            {
+                Console.WriteLine("c is true");
+            }
+            else
+            {
+                Console.WriteLine("b and c are false");
+            }
+        }
+
+        //LISTING 1-57 A more readable nested if statement
+        public void AMoreReadableNestedIfStatement()
+        {
+            //if (x)
+            //{
+            //    if (y)
+            //    {
+            //        F();
+            //    }
+            //    else
+            //    {
+            //        G();
+            //    }
+            //}
+        }
+
+        //LISTING 1-58 The null-coalescing operator
+        public void TheNullCoalescingOperator()
+        {
+            int? x = null;
+            int y = x ?? -1;
+        }
+
+        //LISTING 1-59 Nesting the null-coalescing operator
+        public void NestingTheNullCoalescingOperator()
+        {
+            int? x = null;
+            int? z = null;
+            int y = x ??
+            z ??
+            -1;
+        }
+
+        //The conditional operator
+        //LISTING 1-60 The conditional operator
+        public int TheConditionalOperator(bool p)
+        {
+            if (p)
+                return 1;
+            else
+                return 0;
+
+            return p ? 1 : 0;
+        }
+
+        //LISTING 1-61 A complex if statement
+        public void AComplexIfStatement(char input)
+        {
+            if (input == 'a'
+                || input == 'e'
+                || input == 'i'
+                || input == 'o'
+                || input == 'u')
+            {
+                Console.WriteLine("Input is a vowel");
+            }
+            else
+            {
+                Console.WriteLine("Input is a consonant");
+            }
+        }
+
+        //LISTING 1-62 A switch statement
+        public void ASwichStatement(char input)
+        {
+            switch (input)
+            {
+                case 'a':
+                case 'e':
+                case 'i':
+                case 'o':
+                case 'u':
+                    {
+                        Console.WriteLine("Input is a vowel");
+                        break;
+                    }
+                case 'y':
+                    {
+                        Console.WriteLine("Input is sometimes a vowel.");
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("Input is a consonant");
+                        break;
+                    }
+            }
+        }
+
+        //LISTING 1-63 goto in a switch statement
+        public void GotoInSwitchStatement()
+        {
+            int i = 1;
+            switch (i)
+            {
+                case 1:
+                    {
+                        Console.WriteLine("Case 1");
+                        goto case 2;
+                    }
+                case 2:
+                    {
+                        Console.WriteLine("Case 2");
+                        break;
+                    }
+            }
+        }
+
+        //The for loop
+        //LISTING 1-64 A basic for loop
+        public void ABasicForLoop()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+            for (int index = 0; index < values.Length; index++)
+            {
+                Console.Write(values[index]);
+            }
+        }
+
+        //LISTING 1-65 A for loop with multiple loop variables
+        public void AForLoopWithMultipleLoopVariables()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+
+            for (int x = 0, y = values.Length - 1;
+            ((x < values.Length) && (y >= 0));
+            x++, y--)
+            {
+                Console.Write(values[x]);
+                Console.Write(values[y]);
+            }
         }
     }
 }

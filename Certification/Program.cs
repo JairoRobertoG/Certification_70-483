@@ -124,7 +124,31 @@ namespace Certification
             //multithreading_asynchronous_processing.UsingInterlockedClass();
 
             //LISTING 1-41 Compare and exchange as a nonatomic operation
-            multithreading_asynchronous_processing.CompareExchangeAsNonatomicOperation();
+            //multithreading_asynchronous_processing.CompareExchangeAsNonatomicOperation();
+
+            //LISTING 1-42 Using a CancellationToken
+            //multithreading_asynchronous_processing.UsingCacellationToken();
+
+            //LISTING 1-43 Throwing OperationCanceledException
+            //multithreading_asynchronous_processing.ThrowingOperationCanceledException();
+
+            //LISTING 1-46 A better readable nested if statement
+            //multithreading_asynchronous_processing.BetterReadableNestedIfStatement();
+
+            //LISTING 1-47 Boolean OR operator
+            //multithreading_asynchronous_processing.BooleanOrOperator();
+
+            //LISTING 1-48 Short-circuiting the OR operator
+            //multithreading_asynchronous_processing.OrShortCircuit();
+
+            //LISTING 1-51 Using the XOR operator
+            //multithreading_asynchronous_processing.UsingXOROperator();
+
+            ////LISTING 1-55 Using an else statement
+            //multithreading_asynchronous_processing.UsingAnElseStatement();
+
+            ////LISTING 1-64 A basic for loop
+            multithreading_asynchronous_processing.ABasicForLoop();
         }
     }
 }
