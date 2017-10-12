@@ -148,7 +148,32 @@ namespace Certification
             //multithreading_asynchronous_processing.UsingAnElseStatement();
 
             ////LISTING 1-64 A basic for loop
-            multithreading_asynchronous_processing.ABasicForLoop();
+            //multithreading_asynchronous_processing.ABasicForLoop();
+
+            //LISTING 1-66 A for loop with a custom increment
+            //multithreading_asynchronous_processing.AForLoopWithACustomIncrement();
+
+            ////LISTING 1-67 A for loop with a break statement
+            //multithreading_asynchronous_processing.AForLoopWithABreakStatement();
+
+            //LISTING 1-68 A for loop with a continue statement
+            //multithreading_asynchronous_processing.AForLoopWithAContinueStatement();
+
+            //LISTING 1-70 do-while loop
+            //multithreading_asynchronous_processing.DoWhileLoop();
+
+            //LISTING 1-71 foreach loop
+            //multithreading_asynchronous_processing.ForeachLoop();
+
+            ////LISTING 1-72 Changing items in a foreach
+            //multithreading_asynchronous_processing.ChangingItemsInForeach();
+
+            //LISTING 1-73 The compiler-generated code for a foreach loop
+            //multithreading_asynchronous_processing.CompilerGeneratedCodeForForeachLoop();
+
+            //LISTING 1-75 Using a delegate
+            multithreading_asynchronous_processing.UsingDelegate();
+
         }
     }
 }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Certification.Classes;
+using System.Collections.Generic;
 
 namespace Certification.Chapters.manage_program_flow
 {
@@ -1087,5 +1089,161 @@ namespace Certification.Chapters.manage_program_flow
                 Console.Write(values[y]);
             }
         }
+
+        //LISTING 1-66 A for loop with a custom increment
+        public void AForLoopWithACustomIncrement()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+            for (int index = 0; index < values.Length; index += 2)
+            {
+                Console.Write(values[index]);
+            }
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-67 A for loop with a break statement
+        public void AForLoopWithABreakStatement()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+            for (int index = 0; index < values.Length; index++)
+            {
+                if (values[index] == 4) break;
+
+                Console.Write(values[index]);
+            }
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-68 A for loop with a continue statement
+        public void AForLoopWithAContinueStatement()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+            for (int index = 0; index < values.Length; index++)
+            {
+                if (values[index] == 4) continue;
+                Console.Write(values[index]);
+            }
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-69 A for loop with a continue statement
+        public void AForLoopWithAContinueStatementWhile()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+            {
+                int index = 0;
+                while (index < values.Length)
+                {
+                    Console.Write(values[index]);
+                    index++;
+                }
+            }
+        }
+
+        //LISTING 1-70 do-while loop
+        public void DoWhileLoop()
+        {
+            do
+            {
+                Console.WriteLine("Executed once!");
+            }
+
+            while (false);
+
+            Console.ReadLine();
+        }
+
+        //LISTING 1-71 foreach loop
+        public void ForeachLoop()
+        {
+            int[] values = { 1, 2, 3, 4, 5, 6 };
+
+            foreach (int i in values)
+            {
+                Console.Write(i);
+            }
+            Console.ReadLine();
+        }
+
+        //LISTING 1-72 Changing items in a foreach
+        void CannotChangeForeachIterationVariable()
+        {
+            var people = new List<Person>
+            {
+                new Person() { FirstName = "John", LastName = "Doe"},
+                new Person() { FirstName = "Jane", LastName = "Doe"},
+            };
+            foreach (Person p in people)
+            {
+                p.LastName = "Changed"; // This is allowed
+                                        // p = new Person(); // This gives a compile error
+            }
+        }
+
+        public void ChangingItemsInForeach()
+        {
+            CannotChangeForeachIterationVariable();
+        }
+
+        //LISTING 1-73 The compiler-generated code for a foreach loop
+        public void CompilerGeneratedCodeForForeachLoop()
+        {
+            var people = new List<Person>
+            {
+                new Person() { FirstName = "John", LastName = "Doe"},
+                new Person() { FirstName = "Jane", LastName = "Doe"},
+            };
+
+            List<Person>.Enumerator e = people.GetEnumerator();
+            try
+            {
+                Person v;
+                while (e.MoveNext())
+                {
+                    v = e.Current;
+                }
+            }
+            finally
+            {
+                IDisposable d = e as System.IDisposable;
+                if (d != null) d.Dispose();
+            }
+        }
+
+        //LISTING 1-74 goto statement with a label
+        public void GotoStatementWithLabel()
+        {
+            int x = 3;
+            if (x == 3) goto customLabel;
+
+            x++;
+            customLabel:
+            Console.WriteLine(x);
+
+        }
+
+        //LISTING 1-75 Using a delegate
+        public delegate int Calculate(int x, int y);
+        public int Add(int x, int y) { return x + y; }
+        public int Multiply(int x, int y) { return x * y; }
+
+        void UseDelegate()
+        {
+            Calculate calc = Add;
+            Console.WriteLine(calc(3, 4)); // Displays 7
+            calc = Multiply;
+            Console.WriteLine(calc(3, 4)); // Displays 12
+
+            Console.ReadLine();
+        }
+
+        public void UsingDelegate()
+        {
+            UseDelegate();
+        }
+
     }
 }

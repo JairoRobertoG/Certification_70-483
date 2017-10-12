@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chapters\manage_program_flow\MultithreadingAsynchronousProcessing.cs" />
+    <Compile Include="Classes\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudyGuide%28MCSD%29\StudyGuide.cs" />
