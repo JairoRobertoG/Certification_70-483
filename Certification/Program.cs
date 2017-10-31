@@ -1,7 +1,7 @@
-﻿using Certification.Chapters.manage_program_flow;
+﻿using Certification.Chapters.Objective_1;
+using Certification.Chapters.Objective_2;
 using Certification.StudyGuide_MCSD_;
-using System;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace Certification
 {
@@ -9,9 +9,11 @@ namespace Certification
     {
         public static void Main()
         {
-            MultithreadingAsynchronousProcessing multithreading_asynchronous_processing = new MultithreadingAsynchronousProcessing();
-            StudyGuide study_guide = new StudyGuide();
+            ManageProgramFlow ManageProgramFlow = new ManageProgramFlow();
+            StudyGuide StudyGuide = new StudyGuide();
+            CreateAndUseTypes CreateAndUseTypes = new CreateAndUseTypes();
 
+            #region Methods Objective 1 Manage Program Flow
             //LISTING 1-1 Creating a thread with the Thread class
             //multithreading_asynchronous_processing.TopicThreadClass();
 
@@ -172,7 +174,120 @@ namespace Certification
             //multithreading_asynchronous_processing.CompilerGeneratedCodeForForeachLoop();
 
             //LISTING 1-75 Using a delegate
-            multithreading_asynchronous_processing.UsingDelegate();
+            //multithreading_asynchronous_processing.UsingDelegate();
+
+            ////LISTING 1-76 A multicast delegate
+            //multithreading_asynchronous_processing.Multicastelegate();
+
+            ////LISTING 1-77 Covariance with delegates
+            //multithreading_asynchronous_processing.CovarianceWithDelegates();
+
+            //LISTING 1-79 Lambda expression to create a delegate
+            //multithreading_asynchronous_processing.LambdaExpressions();
+
+            //LISTING 1-81 Using the Action delegate
+            //multithreading_asynchronous_processing.UsingActionDelegate();
+
+            ////LISTING 1-82 Using an Action to expose an event
+            //multithreading_asynchronous_processing.UsingActionExposeAnEvent();
+
+            ////LISTING 1-83 Using the event keyword
+            //multithreading_asynchronous_processing.UsingEventKeyword();
+
+            ///LISTING 1-84 Custom event arguments
+            //multithreading_asynchronous_processing.CustomEventArguments();
+
+            ////LISTING 1-85 Custom event accessor
+            //multithreading_asynchronous_processing.CustomEventAccessor();
+
+            ////LISTING 1-86 Exception when raising an event
+            //multithreading_asynchronous_processing.ExceptionWhenRaisingAnEvent();
+
+            //LISTING 1-87 Manually raising events with exception handling
+            //multithreading_asynchronous_processing.ManuallyRaisingEventsWithExceptionHandling();
+
+            //LISTING 1-88 Parsing an invalid number
+            //multithreading_asynchronous_processing.ParsingAnInvalidNumber();
+
+            ////LISTING 1-89 Catching a FormatException
+            //multithreading_asynchronous_processing.CatchingFormatException();
+
+            //LISTING 1-90 Catching different exception types
+            //multithreading_asynchronous_processing.CatchingDifferentExceptionTypes();
+
+            ////LISTING 1-91 Using a finally block
+            //multithreading_asynchronous_processing.UsingFinallyBlock();
+
+            //LISTING 1-92 Using Environment.FailFast
+            //multithreading_asynchronous_processing.UsingEnviromentFailFast();
+
+            //LISTING 1-93 Inspecting an exception
+            //multithreading_asynchronous_processing.InspectingAnexception();
+
+            //LISTING 1-94 Throwing an ArgumentNullException
+            //multithreading_asynchronous_processing.ThrowingAnArgumentNullException();
+
+            //LISTING 1-97 Using ExceptionDispatchInfo.Throw
+            //multithreading_asynchronous_processing.UsingExceptionDispatchInfoThrow();
+            #endregion
+
+            //LISTING 2-2 Creating a custom struct
+            //CreateAndUseTypes.CreatingCustomStruc();
+
+            //LISTING 2-15 Using default(T) with a generic type parameter
+            //CreateAndUseTypes.UsingDefaultTWithGenericTypeParameter();
+
+            //LISTING 2-17 Overriding a virtual method
+            //CreateAndUseTypes.OverridingVirtualMethod();
+
+            //LISTING 2-18 Using the sealed keyword on a method
+            //CreateAndUseTypes.UsingSealedKeywordOnMethod();
+
+            //LISTING 2-28 Exporting some data to Excel
+            //var entities = new List<dynamic> {
+            //    new
+            //        {
+            //        ColumnA = 1,
+            //        ColumnB = "Foo"
+            //        },
+            //    new
+            //        {
+            //        ColumnA= 2,
+            //        ColumnB= "Bar"
+            //        }
+            //};
+            //CreateAndUseTypes.ExportingSomeDataToExcel(entities);
+
+            //LISTING 2-29 Creating a custom DynamicObject
+            //CreateAndUseTypes.CreatingCustomDynamicObject();
+
+            //LISTING 2-30 The dynamic keyword in ASP.NET MVC
+            //public ActionResult Index()
+            //{
+            //    ViewBag.MyDynamicValue = "This property is not statically typed";
+            //    return View();
+            //}
+
+            ////LISTING 2-35 Using the internal access modifier
+            //CreateAndUseTypes.UsindTheInternalAccessModifier();
+
+            ////LISTING 2-37 Creating a property
+            //CreateAndUseTypes.CreatingProperty();
+
+            //LISTING 2-48 Hiding a method with the new keyword
+            //CreateAndUseTypes.HidingMethodWithNewKeyword();
+
+            //LISTING 2-51 A Square class that inherits from Rectangle
+            //CreateAndUseTypes.SquareClassThatInheritsFromRectangule();
+
+            //LISTING 2-54 Implementing the IComparable interface
+            //CreateAndUseTypes.ImplementingIComparableInterface();
+
+            //LISTING 2-55 Syntactic sugar of the foreach statement
+            //CreateAndUseTypes.SyntaticSugarOfForeachStatment();
+
+            //LISTING 2-56 Implementing IEnumerable<T> on a custom type
+            CreateAndUseTypes.ImplementingIEnumerableOnCustomType();
 
         }
     }

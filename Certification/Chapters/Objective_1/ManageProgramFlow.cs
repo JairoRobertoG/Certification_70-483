@@ -7,12 +7,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Certification.Classes;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.ExceptionServices;
 
-namespace Certification.Chapters.manage_program_flow
+namespace Certification.Chapters.Objective_1
 {
-    public class MultithreadingAsynchronousProcessing
+    public class ManageProgramFlow
     {
-        public MultithreadingAsynchronousProcessing()
+        public ManageProgramFlow()
         {
         }
 
@@ -1245,5 +1247,342 @@ namespace Certification.Chapters.manage_program_flow
             UseDelegate();
         }
 
+        //LISTING 1-76 A multicast delegate
+        void MethodOne()
+        {
+            Console.WriteLine("MethodOne");
+        }
+        void MethodTwo()
+        {
+            Console.WriteLine("MethodTwo");
+        }
+
+        delegate void Dele();
+
+        void Multicast()
+        {
+            Dele d = MethodOne;
+            d += MethodTwo;
+            d();
+            Console.ReadLine();
+        }
+
+        public void Multicastelegate()
+        {
+            Multicast();
+        }
+
+        //LISTING 1-77 Covariance with delegates
+        delegate TextWriter CovarianceDel();
+        StreamWriter MethodStream() { return null; }
+        StringWriter MethodString() { return null; }
+
+        public void CovarianceWithDelegates()
+        {
+            CovarianceDel del;
+            del = MethodStream;
+            del = MethodString;
+        }
+
+        //LISTING 1-78 Contravariance with delegates
+        void DoSomething(TextWriter tw) { }
+
+        delegate void ContravarianceDel(StreamWriter tw);
+
+        public void ContravarianceWithDelegates()
+        {
+            ContravarianceDel del = DoSomething;
+        }
+
+        //Using lambda expressions
+        //LISTING 1-79 Lambda expression to create a delegate
+        public void LambdaExpressions()
+        {
+            Calculate calc = (x, y) => x + y;
+            Console.WriteLine(calc(3, 4)); // Displays 7
+            calc = (x, y) => x * y;
+            Console.WriteLine(calc(3, 4)); // Displays 12
+            Console.ReadLine();
+        }
+
+        //LISTING 1-80 Creating a lambda expression with multiple statements
+        public void CreatingLambdaExpressionWithMultipleStatements()
+        {
+            Calculate calc =
+                (x, y) =>
+                {
+                    Console.WriteLine("Adding numbers");
+                    return x + y;
+                };
+            int result = calc(3, 4);
+        }
+
+        //LISTING 1-81 Using the Action delegate
+        public void UsingActionDelegate()
+        {
+            Action<int, int> calc = (x, y) =>
+            {
+                Console.WriteLine(x + y);
+            };
+            calc(3, 4); // Displays 7
+        }
+
+        //Using events
+        //LISTING 1-82 Using an Action to expose an event
+        public void UsingActionExposeAnEvent()
+        {
+            //Pub p = new Pub();
+            //p.OnChange += () => Console.WriteLine("Event raised to method 1");
+            //p.OnChange += () => Console.WriteLine("Event raised to method 2");
+            //p.OnChange += () => Console.ReadLine();
+            //p.Raise();
+        }
+
+        //LISTING 1-83 Using the event keyword
+        public void UsingEventKeyword()
+        {
+            //Pub p = new Pub();
+            //p.OnChange += () => Console.WriteLine("Event raised to method 1");
+            //p.OnChange += () => Console.WriteLine("Event raised to method 2");
+            //p.OnChange += () => Console.ReadLine();
+            //p.Raise();
+        }
+
+        //LISTING 1-84 Custom event arguments
+        public void CustomEventArguments()
+        {
+            //Pub p = new Pub();
+            //p.OnChange += (sender, e)
+            //=> Console.WriteLine("Event raised: {0}", e.Value);
+            //p.OnChange += (sender, e)
+            //=> Console.ReadLine();
+            //p.Raise();
+        }
+
+        //LISTING 1-85 Custom event accessor
+        public void CustomEventAccessor()
+        {
+            Pub b = new Pub();
+            b.Raise();
+        }
+
+        //LISTING 1-86 Exception when raising an event
+        public void ExceptionWhenRaisingAnEvent()
+        {
+            Pub p = new Pub();
+            p.OnChange += (sender, e)
+            => Console.WriteLine("Subscriber 1 called");
+            p.OnChange += (sender, e)
+            =>
+            { throw new Exception(); };
+            p.OnChange += (sender, e)
+            => Console.WriteLine("Subscriber 3 called");
+            p.Raise();
+        }
+
+        //LISTING 1-87 Manually raising events with exception handling
+        public void ManuallyRaisingEventsWithExceptionHandling()
+        {
+            Pub p = new Pub();
+            p.OnChange += (sender, e)
+            => Console.WriteLine("Subscriber 1 called");
+            p.OnChange += (sender, e)
+            =>
+            { throw new Exception(); };
+            p.OnChange += (sender, e)
+            => Console.WriteLine("Subscriber 3 called");
+            p.OnChange += (sender, e)
+            => Console.ReadLine();
+            try
+            {
+                p.Raise();
+            }
+            catch (AggregateException ex)
+            {
+                Console.WriteLine(ex.InnerExceptions.Count);
+            }
+        }
+
+        //LISTING 1-88 Parsing an invalid number
+        public void ParsingAnInvalidNumber()
+        {
+            string s = "NaN";
+            int i = int.Parse(s);
+        }
+
+        //LISTING 1-89 Catching a FormatException
+        public void CatchingFormatException()
+        {
+            while (true)
+            {
+                string s = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(s)) break;
+                try
+                {
+                    int i = int.Parse(s);
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("{0} is not a valid number.Please try again", s);
+                }
+            }
+        }
+
+        //LISTING 1-90 Catching different exception types
+        public void CatchingDifferentExceptionTypes()
+        {
+            string s = Console.ReadLine();
+            try
+            {
+                int i = int.Parse(s);
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("You need to enter a value");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("{0} is not a valid number.Please try again", s);
+            }
+            Console.ReadLine();
+        }
+
+        //LISTING 1-91 Using a finally block
+        public void UsingFinallyBlock()
+        {
+            string s = Console.ReadLine();
+            try
+            {
+                int i = int.Parse(s);
+            }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("You need to enter a value");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("{0} is not a valid number.Please try again", s);
+            }
+            finally
+            {
+                Console.WriteLine("Program complete.");
+                Console.ReadLine();
+            }
+        }
+
+        //LISTING 1-92 Using Environment.FailFast
+        public void UsingEnviromentFailFast()
+        {
+            string s = Console.ReadLine();
+            try
+            {
+                int i = int.Parse(s);
+                if (i == 42) Environment.FailFast("Special number entered");
+            }
+            finally
+            {
+                Console.WriteLine("Program complete.");
+                Console.ReadLine();
+            }
+        }
+
+        //LISTING 1-93 Inspecting an exception
+        static int ReadAndParse()
+        {
+            string s = Console.ReadLine();
+            int i = int.Parse(s);
+            return i;
+        }
+
+        public void InspectingAnexception()
+        {
+            try
+            {
+                int i = ReadAndParse();
+                Console.WriteLine("Parsed: {0}", i);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Message: {0}", e.Message);
+                Console.WriteLine("StackTrace: {0}", e.StackTrace);
+                Console.WriteLine("HelpLink: {0}", e.HelpLink);
+                Console.WriteLine("InnerException: {0}", e.InnerException);
+                Console.WriteLine("TargetSite: {0}", e.TargetSite);
+                Console.WriteLine("Source: {0}", e.Source);
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
+        }
+
+        //Throwing exceptions
+        //LISTING 1-94 Throwing an ArgumentNullException
+        string OpenAndParse(string fileName)
+        {
+            if (string.IsNullOrWhiteSpace(fileName))
+                throw new ArgumentNullException("fileName", "Filename is required");
+            return File.ReadAllText(fileName);
+        }
+
+        public void ThrowingAnArgumentNullException()
+        {
+            Console.WriteLine(OpenAndParse("example.txt"));
+        }
+
+        //LISTING 1-95 Rethrowing an exception
+        public void RethrowingAnException()
+        {
+            //try
+            //{
+            //    ReadAndParse();
+            //}
+            //catch (Exception logEx)
+            //{
+            //    //Log(logEx);
+            //    throw; // rethrow the original exception
+            //}
+        }
+
+        //LISTING 1-96 Throwing a new exception that points to the original one
+        public void ThrowingNewExceptionThatPointsToTheOriginalOne()
+        {
+            //try
+            //{
+            //    ProcessOrder();
+            //}
+            //catch (MessageQueueException ex)
+            //{
+            //    throw new OrderProcessingException("Error while processing order", ex);
+            //}
+        }
+
+        //LISTING 1-97 Using ExceptionDispatchInfo.Throw
+        public void UsingExceptionDispatchInfoThrow()
+        {
+            ExceptionDispatchInfo possibleException = null;
+            try
+            {
+                Console.Write("Enter weekly cost: ");
+                string s = Console.ReadLine();
+                int.Parse(s);
+            }
+            catch (FormatException ex)
+            {
+                possibleException = ExceptionDispatchInfo.Capture(ex);
+            }
+            if (possibleException != null)
+            {
+                possibleException.Throw();
+            }
+            Console.ReadLine();
+        }
+
+        //LISTING 1-98 Creating a custom exception
+        public void CreatingCustomException()
+        {
+            OrderProcessingException orderrocessingException = new OrderProcessingException(1);
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Certification;
-using Certification.Chapters.manage_program_flow;
+using Certification.Chapters.Objective_1;
 using System.Diagnostics;
 using CertificationInterface.Utilities;
 using System.Net.Http;
@@ -18,12 +18,12 @@ namespace CertificationInterface
 {
     public partial class MainWindow : Form
     {
-        private MultithreadingAsynchronousProcessing multithreading_asynchronous_processing;
+        private ManageProgramFlow multithreading_asynchronous_processing;
 
         public MainWindow()
         {
             InitializeComponent();
-            multithreading_asynchronous_processing = new MultithreadingAsynchronousProcessing();
+            multithreading_asynchronous_processing = new ManageProgramFlow();
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -47,6 +47,14 @@ namespace CertificationInterface
                 await sourceStream.WriteAsync(encodedText, 0, encodedText.Length)
                 .ConfigureAwait(false);
             };
+        }
+
+        
+        
+
+        private void btn_delegates_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

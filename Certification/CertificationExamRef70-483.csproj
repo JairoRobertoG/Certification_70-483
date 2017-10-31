@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -45,8 +48,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chapters\manage_program_flow\MultithreadingAsynchronousProcessing.cs" />
+    <Compile Include="Chapters\Objective_1\ManageProgramFlow.cs" />
+    <Compile Include="Chapters\Objective_2\CreateAndUseTypes.cs" />
+    <Compile Include="Classes\Accessibility.cs" />
+    <Compile Include="Classes\Base.cs" />
+    <Compile Include="Classes\Calculator.cs" />
+    <Compile Include="Classes\ConstructorChaining.cs" />
+    <Compile Include="Classes\Deck.cs" />
+    <Compile Include="Classes\Derived.cs" />
+    <Compile Include="Classes\Derived2.cs" />
+    <Compile Include="Classes\Dog.cs" />
+    <Compile Include="Classes\ExampleImplementation.cs" />
+    <Compile Include="Classes\Human.cs" />
+    <Compile Include="Classes\Implementation.cs" />
+    <Compile Include="Classes\Money.cs" />
+    <Compile Include="Classes\MoveableOject.cs" />
+    <Compile Include="Classes\MyArgs.cs" />
+    <Compile Include="Classes\MyClass.cs" />
+    <Compile Include="Classes\MyInternalClass.cs" />
+    <Compile Include="Classes\Order.cs" />
+    <Compile Include="Classes\OrderProcessingException.cs" />
+    <Compile Include="Classes\OrderRepository.cs" />
+    <Compile Include="Classes\OrderSort.cs" />
+    <Compile Include="Classes\People.cs" />
     <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\Product.cs" />
+    <Compile Include="Classes\Pub.cs" />
+    <Compile Include="Classes\Rectangle.cs" />
+    <Compile Include="Classes\Repository.cs" />
+    <Compile Include="Classes\SampleObject.cs" />
+    <Compile Include="Classes\Square.cs" />
+    <Compile Include="Interfaces\IAnimal.cs" />
+    <Compile Include="Interfaces\IComparable.cs" />
+    <Compile Include="Interfaces\IDisposable.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IExample.cs" />
+    <Compile Include="Interfaces\IInterfaceA.cs" />
+    <Compile Include="Interfaces\ILeft.cs" />
+    <Compile Include="Interfaces\IReadOnlyInterface.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IRight.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StudyGuide%28MCSD%29\StudyGuide.cs" />
