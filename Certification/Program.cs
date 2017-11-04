@@ -287,7 +287,7 @@ namespace Certification
             //CreateAndUseTypes.SyntaticSugarOfForeachStatment();
 
             //LISTING 2-56 Implementing IEnumerable<T> on a custom type
-            CreateAndUseTypes.ImplementingIEnumerableOnCustomType();
+            //CreateAndUseTypes.ImplementingIEnumerableOnCustomType();
 
         }
     }

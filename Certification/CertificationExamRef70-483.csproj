@@ -72,6 +72,7 @@
     <Compile Include="Classes\OrderSort.cs" />
     <Compile Include="Classes\People.cs" />
     <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\PersonAttribute.cs" />
     <Compile Include="Classes\Product.cs" />
     <Compile Include="Classes\Pub.cs" />
     <Compile Include="Classes\Rectangle.cs" />
