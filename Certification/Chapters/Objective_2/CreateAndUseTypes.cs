@@ -1,11 +1,21 @@
 ﻿using Certification.Classes;
 using Certification.Interfaces;
+using Microsoft.CSharp;
 using System;
+using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
+using System.Reflection;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace Certification.Chapters.Objective_2
 {
@@ -390,6 +400,7 @@ namespace Certification.Chapters.Objective_2
 
             People people = new People(humans);
             var test = people.GetEnumerator();
+
         }
 
         //Objective 2.5: Find, execute, and create types at runtime by using reflection
@@ -398,6 +409,288 @@ namespace Certification.Chapters.Objective_2
         //LISTING 2-60 Specifying the target of an attribute explicitly
         //LISTING 2-61 Seeing whether an attribute is defined
         //LISTING 2-62 Getting a specific attribute instance
+        //LISTING 2-63 Using a category attribute in xUnit
+        //LISTING 2-64 Creating a custom attribute
+        //LISTING 2-66 Defining the targets for a custom attribute
+        //LISTING 2-67 Setting the AllowMultiple parameter for a custom attribute
+        //LISTING 2-68 Adding properties to a custom attribute
 
+        //Using reflection
+        //LISTING 2-69 Creating an interface that can be found through reflection
+        //LISTING 2-70 Creating a custom plug-in class
+        //LISTING 2-71 Inspecting an assembly for types that implement a custom interface
+        public void InspectingAssamblyForTypesThatImplementCustomInterface()
+        {
+            Assembly pluginAssembly = Assembly.Load("assemblyname");
+
+            var plugins = from type in pluginAssembly.GetTypes()
+                          where typeof(IPlugin).IsAssignableFrom(type) && !type.IsInterface
+                          select type;
+
+            foreach (Type pluginType in plugins)
+            {
+                IPlugin plugin = Activator.CreateInstance(pluginType) as IPlugin;
+            }
+        }
+
+        //LISTING 2-72 Getting the value of a field through reflection
+        public void GettingValueOfFieldThroughReflection(object obj)
+        {
+            FieldInfo[] fields = obj.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+            foreach (FieldInfo field in fields)
+            {
+                if (field.FieldType == typeof(int))
+                {
+                    Console.WriteLine(field.GetValue(obj));
+                }
+            }
+            Console.ReadLine();
+        }
+
+        //LISTING 2-73 Executing a method through reflection
+        public void ExcecutingMethodThroughReflection()
+        {
+            int i = 42;
+            MethodInfo compareToMethod = i.GetType().GetMethod("CompareTo",
+            new Type[] { typeof(int) });
+            int result = (int)compareToMethod.Invoke(i, new object[] { 41 });
+        }
+
+        //Using CodeDom and lambda expressions to generate code
+        //LISTING 2-74 Generating “Hello World!” with the CodeDOM
+        public void GeneratingCodeWithTheCodeDOM()
+        {}
+
+        //LISTING 2-75 Generating a source file from a CodeCompileUnit
+        public void GeneratingSourceFileFromCodeCompleUmnit()
+        {
+            CodeCompileUnit compileUnit = new CodeCompileUnit();
+            CodeNamespace myNamespace = new CodeNamespace("MyNamespace");
+            myNamespace.Imports.Add(new CodeNamespaceImport("System"));
+            CodeTypeDeclaration myClass = new CodeTypeDeclaration("MyClass");
+            CodeEntryPointMethod start = new CodeEntryPointMethod();
+            CodeMethodInvokeExpression cs1 = new CodeMethodInvokeExpression(
+            new CodeTypeReferenceExpression("Console"),
+            "WriteLine", new CodePrimitiveExpression("Hello World!"));
+            compileUnit.Namespaces.Add(myNamespace);
+            myNamespace.Types.Add(myClass);
+            myClass.Members.Add(start);
+            start.Statements.Add(cs1);
+
+            CSharpCodeProvider provider = new CSharpCodeProvider();
+            using (StreamWriter sw = new StreamWriter("HelloWorld.cs", false))
+            {
+                IndentedTextWriter tw = new IndentedTextWriter(sw, " ");
+                provider.GenerateCodeFromCompileUnit(compileUnit, tw,
+                new CodeGeneratorOptions());
+                tw.Close();
+            }
+        }
+
+        //Lambda expressions
+        //LISTING 2-77 Creating a Func type with a lambda
+        public void CreatingFuncTypeWithLambda()
+        {
+            Func<int, int, int> addFunc = (x, y) => x + y;
+            Console.WriteLine(addFunc(2, 3));
+            Console.ReadLine();
+        }
+
+        //LISTING 2-78 Creating “Hello World!” with an expression tree
+        public void CreatingCodeWithAnExpressionTree()
+        {
+            BlockExpression blockExpr = Expression.Block(
+                Expression.Call(
+                    null,
+                    typeof(Console).GetMethod("Write", new Type[] { typeof(String) }),
+                    Expression.Constant("Hello")
+                    ),
+                Expression.Call(
+                    null,
+                    typeof(Console).GetMethod("WriteLine", new Type[] { typeof(String) }),
+                    Expression.Constant("World!")
+                    )
+                );
+
+            Expression.Lambda<Action>(blockExpr).Compile()();
+        }
+
+        //LISTING 2-80 Not closing a file will throw an error
+        public void NOtClosingFileWillThrowAnError()
+        {
+            StreamWriter stream = File.CreateText("temp.dat");
+            stream.Write("some data");
+            File.Delete("temp.dat"); // Throws an IOException because the file is already open.
+        }
+
+        //LISTING 2-81 Forcing a garbage collection
+        public void ForcingGarbageCollection()
+        {
+            StreamWriter stream = File.CreateText("temp.dat");
+            stream.Write("some data");
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            File.Delete("temp.dat");
+        }
+
+        //LISTING 2-82 The IDisposable interface
+
+        //LISTING 2-83 Calling Dispose to free unmanaged resources
+        public void CallingDisposeToFreeUnmanagedResources()
+        {
+            using (StreamWriter sw = File.CreateText("temp.dat"))
+            {
+                sw.Write("some data");
+                sw.Dispose();
+                File.Delete("temp.dat");
+            }
+        }
+        //3970640
+        //Implementing IDisposable and a finalizer
+        //LISTING 2-84 Implementing IDisposable and a finalizer
+        public void ImplementingIDisposableFinalizer()
+        {
+            UnmangedWrapper unmangedWrapper = new UnmangedWrapper();
+            unmangedWrapper.Dispose();
+            File.Delete("temp.dat");
+        }
+
+        //LISTING 2-85 Using WeakReference
+        static WeakReference data;
+        public void UsingWeakReference()
+        {
+            object result = GetData();
+            GC.Collect();// Uncommenting this line will make data.Target null
+            result = GetData();
+        }
+
+        private object GetData()
+        {
+            if (data == null)
+            {
+                data = new WeakReference(new { id = 5 });
+            }
+            if (data.Target == null)
+            {
+                data.Target = new { id = 5 };
+            }
+
+            return data.Target;
+        }
+
+        //LISTING 2-86 Creating a large number of strings
+        public void CreatingLargeNumberString()
+        {
+            string s = string.Empty;
+            for (int i = 0; i < 10000; i++)
+            {
+                s += "x";
+            }
+        }
+
+        //LISTING 2-87 Changing a character with a StringBuilder
+        public void ChangingCharacterWithStringBuilder()
+        {
+            StringBuilder sb = new System.Text.StringBuilder("A initial value");
+            sb[0] = 'B';
+            Console.WriteLine(sb);
+            Console.ReadLine();
+        }
+
+        //LISTING 2-88 Using a StringBuilder in a loop
+        public void UsingStringBuilderInLoop()
+        {
+            StringBuilder sb = new StringBuilder(string.Empty);
+            for (int i = 0; i < 10000; i++)
+            {
+                sb.Append("x");
+            }
+        }
+
+        //LISTING 2-89 Using a StringWriter as the output for an XmlWriter
+        public void UsingStringWriterAsTheOutputForAnXmlWriter()
+        {
+            var stringWriter = new StringWriter();
+            using (XmlWriter writer = XmlWriter.Create(stringWriter))
+            {
+                writer.WriteStartElement("book");
+                writer.WriteElementString("price", "19.95");
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+            string xml = stringWriter.ToString();
+            Console.ReadLine();
+        }
+
+        //LISTING 2-90 Using a StringReader as the input for an XmlReader
+        public void UsingStringReaderAsTheInputForAnXmlReader()
+        {
+            var stringWriter = new StringWriter();
+            using (XmlWriter writer = XmlWriter.Create(stringWriter))
+            {
+                writer.WriteStartElement("book");
+                writer.WriteElementString("price", "19.95");
+                writer.WriteEndElement();
+                writer.Flush();
+            }
+            string xml = stringWriter.ToString();
+
+            var stringReader = new StringReader(xml);
+            using (XmlReader reader = XmlReader.Create(stringReader))
+            {
+                reader.ReadToFollowing("price");
+                decimal price = decimal.Parse(reader.ReadInnerXml()); // Make sure that you read the decimal part correctly
+            }
+        }
+
+        //LISTING 2-91 Using IndexOf and LastIndexOf
+        public void UsingIndexOfAndLAstIndex()
+        {
+            string value = "My Sample Value";
+            int indexOfp = value.IndexOf('p'); // returns 6
+            int lastIndexOfm = value.LastIndexOf('m'); // returns 5
+        }
+
+        //LISTING 2-92 Using StartsWith and EndsWith
+        public void UsingStartsWithAndEndsWith()
+        {
+            string value = "< mycustominput >";
+            if (value.StartsWith("<"))
+                Console.WriteLine("<");
+            if (value.EndsWith(">"))
+                Console.WriteLine(">");
+
+            Console.ReadLine();
+        }
+
+        //LISTING 2-93 Reading a substring
+        public void ReadingSubstring()
+        {
+            string value = "My Sample Value";
+            string subString = value.Substring(3, 6); // Returns ‘Sample’
+        }
+
+        //LISTING 2-94 Changing a string with a regular expression
+        public void ChangingStringWithRegularExpression()
+        {
+            string pattern = "(Mr\\.? | Mrs\\.? | Miss | Ms\\.? )";
+            string[] names = { "Mr. Henry Hunt", "Ms. Sara Samuels",
+                                "Abraham Adams”, “Ms. Nicole Norris" };
+
+            foreach (string name in names)
+                Console.WriteLine(Regex.Replace(name, pattern, String.Empty));
+
+            Console.ReadLine();
+        }
+
+        //LISTING 2-95 Iterating over a string
+        public void IteratingOverString()
+        {
+            string value = "My Custom Value";
+            foreach (char c in value)
+                Console.WriteLine(c);
+
+            Console.ReadLine();
+        }
     }
 }

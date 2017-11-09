@@ -51,6 +51,7 @@
     <Compile Include="Chapters\Objective_1\ManageProgramFlow.cs" />
     <Compile Include="Chapters\Objective_2\CreateAndUseTypes.cs" />
     <Compile Include="Classes\Accessibility.cs" />
+    <Compile Include="Classes\CategoryAttribute.cs" />
     <Compile Include="Classes\Base.cs" />
     <Compile Include="Classes\Calculator.cs" />
     <Compile Include="Classes\ConstructorChaining.cs" />
@@ -63,9 +64,12 @@
     <Compile Include="Classes\Implementation.cs" />
     <Compile Include="Classes\Money.cs" />
     <Compile Include="Classes\MoveableOject.cs" />
+    <Compile Include="Classes\MyApplication.cs" />
     <Compile Include="Classes\MyArgs.cs" />
     <Compile Include="Classes\MyClass.cs" />
     <Compile Include="Classes\MyInternalClass.cs" />
+    <Compile Include="Classes\MyMethodAndParameterAttribute.cs" />
+    <Compile Include="Classes\MyPlugin.cs" />
     <Compile Include="Classes\Order.cs" />
     <Compile Include="Classes\OrderProcessingException.cs" />
     <Compile Include="Classes\OrderRepository.cs" />
@@ -78,7 +82,9 @@
     <Compile Include="Classes\Rectangle.cs" />
     <Compile Include="Classes\Repository.cs" />
     <Compile Include="Classes\SampleObject.cs" />
+    <Compile Include="Classes\SomeType.cs" />
     <Compile Include="Classes\Square.cs" />
+    <Compile Include="Classes\UnmangedWrapper.cs" />
     <Compile Include="Interfaces\IAnimal.cs" />
     <Compile Include="Interfaces\IComparable.cs" />
     <Compile Include="Interfaces\IDisposable.cs" />
@@ -86,6 +92,7 @@
     <Compile Include="Interfaces\IExample.cs" />
     <Compile Include="Interfaces\IInterfaceA.cs" />
     <Compile Include="Interfaces\ILeft.cs" />
+    <Compile Include="Interfaces\IPlugin.cs" />
     <Compile Include="Interfaces\IReadOnlyInterface.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IRight.cs" />

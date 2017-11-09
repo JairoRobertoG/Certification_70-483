@@ -289,6 +289,62 @@ namespace Certification
             //LISTING 2-56 Implementing IEnumerable<T> on a custom type
             //CreateAndUseTypes.ImplementingIEnumerableOnCustomType();
 
+            //LISTING 2-71 Inspecting an assembly for types that implement a custom interface
+            //CreateAndUseTypes.InspectingAssamblyForTypesThatImplementCustomInterface();
+
+            ////LISTING 2-72 Getting the value of a field through reflection
+            //CreateAndUseTypes.GettingValueOfFieldThroughReflection(new { id = 50 });
+
+            ////LISTING 2-73 Executing a method through reflection
+            //CreateAndUseTypes.ExcecutingMethodThroughReflection();
+
+            //LISTING 2-74 Generating “Hello World!” with the CodeDOM
+            //CreateAndUseTypes.GeneratingCodeWithTheCodeDOM();
+
+            ////LISTING 2-75 Generating a source file from a CodeCompileUnit
+            //CreateAndUseTypes.GeneratingSourceFileFromCodeCompleUmnit();
+
+            ////LISTING 2-77 Creating a Func type with a lambda
+            //CreateAndUseTypes.CreatingFuncTypeWithLambda();
+
+            //LISTING 2-78 Creating “Hello World!” with an expression tree
+            //CreateAndUseTypes.CreatingCodeWithAnExpressionTree();
+
+            ////LISTING 2-80 Not closing a file will throw an error
+            //CreateAndUseTypes.NOtClosingFileWillThrowAnError();
+
+            //LISTING 2-81 Forcing a garbage collection
+            //CreateAndUseTypes.ForcingGarbageCollection();
+
+            ////LISTING 2-83 Calling Dispose to free unmanaged resources
+            //CreateAndUseTypes.CallingDisposeToFreeUnmanagedResources();
+
+            ////LISTING 2-84 Implementing IDisposable and a finalizer
+            //CreateAndUseTypes.ImplementingIDisposableFinalizer();
+
+            //LISTING 2-85 Using WeakReference
+            //CreateAndUseTypes.UsingWeakReference();
+
+            //LISTING 2-86 Creating a large number of strings
+            //CreateAndUseTypes.CreatingLargeNumberString();
+
+            //LISTING 2-87 Changing a character with a StringBuilder
+            //CreateAndUseTypes.ChangingCharacterWithStringBuilder();
+
+            ////LISTING 2-89 Using a StringWriter as the output for an XmlWriter
+            //CreateAndUseTypes.UsingStringWriterAsTheOutputForAnXmlWriter();
+
+            ////LISTING 2-90 Using a StringReader as the input for an XmlReader
+            //CreateAndUseTypes.UsingStringReaderAsTheInputForAnXmlReader();
+
+            //LISTING 2-92 Using StartsWith and EndsWith
+            //CreateAndUseTypes.UsingStartsWithAndEndsWith();
+
+            ////LISTING 2-94 Changing a string with a regular expression
+            //CreateAndUseTypes.ChangingStringWithRegularExpression();
+
+            ////LISTING 2-95 Iterating over a string
+            CreateAndUseTypes.IteratingOverString();
         }
     }
 }
