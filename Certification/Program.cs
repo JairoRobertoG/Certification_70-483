@@ -344,7 +344,10 @@ namespace Certification
             //CreateAndUseTypes.ChangingStringWithRegularExpression();
 
             ////LISTING 2-95 Iterating over a string
-            CreateAndUseTypes.IteratingOverString();
+            //CreateAndUseTypes.IteratingOverString();
+
+            //LISTING 2-96 Overriding ToString
+            CreateAndUseTypes.OverridingToString();
         }
     }
 }

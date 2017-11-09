@@ -4,3 +4,10 @@ C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Cer
 C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.exe
 C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.pdb
 C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\CertificationExamRef70-483.csprojResolveAssemblyReference.cache
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.exe.config
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.exe
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Certification.pdb
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\obj\Debug\CertificationExamRef70-483.csprojResolveAssemblyReference.cache
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.exe
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.pdb
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\obj\Debug\CertificationExamRef70-483.csproj.ResolveComReference.cache

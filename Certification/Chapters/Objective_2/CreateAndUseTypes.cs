@@ -263,7 +263,7 @@ namespace Certification.Chapters.Objective_2
             workSheet.Cells[1, "A"] = "Header A";
             workSheet.Cells[1, "B"] = "Header B";
             var row = 1;
-            foreach (var entity in entities)
+            foreach (var entity in entities)  
             {
                 row++;
                 workSheet.Cells[row, "A"] = entity.ColumnA;
@@ -692,5 +692,30 @@ namespace Certification.Chapters.Objective_2
 
             Console.ReadLine();
         }
+
+        //LISTING 2-96 Overriding ToString
+        public void OverridingToString()
+        {
+            PersonString p = new PersonString("Jhon", "Doe");
+            Console.WriteLine(p);
+        }
+
+        //LISTING 2-97 Displaying a number with a currency format string
+        public void DisplayingNumberWithCurrencyFormatString()
+        {
+            double cost = 1234.56;
+            Console.WriteLine(cost.ToString("C", new CultureInfo("en - US")));
+        }
+
+        //LISTING 2-98 Displaying a DateTime with different format strings
+        public void DisplayingDateTimeWithDifferentFormatString()
+        {
+            DateTime d = new DateTime(2013, 4, 22);
+            CultureInfo provider = new CultureInfo("en - US");
+            Console.WriteLine(d.ToString("d", provider)); // Displays 4/22/2013
+            Console.WriteLine(d.ToString("D", provider)); // Displays Monday, April 22, 2013
+            Console.WriteLine(d.ToString("M", provider)); // Displays April 2
+        }
+
     }
 }
