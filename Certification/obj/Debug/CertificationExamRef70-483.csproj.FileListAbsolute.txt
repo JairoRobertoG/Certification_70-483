@@ -11,3 +11,4 @@ C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\obj\Debug\Cer
 C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.exe
 C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Certification.pdb
 C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\obj\Debug\CertificationExamRef70-483.csproj.ResolveComReference.cache
+C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\obj\Debug\CertificationExamRef70-483.csproj.ResolveComReference.cache

@@ -347,7 +347,13 @@ namespace Certification
             //CreateAndUseTypes.IteratingOverString();
 
             //LISTING 2-96 Overriding ToString
-            CreateAndUseTypes.OverridingToString();
+            //CreateAndUseTypes.OverridingToString();
+
+            //LISTING 2-98 Displaying a DateTime with different format strings
+            //CreateAndUseTypes.DisplayingDateTimeWithDifferentFormatString();
+
+            ////LISTING 2-99 Implementing custom formatting on a type
+            CreateAndUseTypes.ImplementingCustomFormattingOnType();
         }
     }
 }

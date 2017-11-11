@@ -715,6 +715,17 @@ namespace Certification.Chapters.Objective_2
             Console.WriteLine(d.ToString("d", provider)); // Displays 4/22/2013
             Console.WriteLine(d.ToString("D", provider)); // Displays Monday, April 22, 2013
             Console.WriteLine(d.ToString("M", provider)); // Displays April 2
+
+            Console.ReadLine();
+        }
+
+        //LISTING 2-99 Implementing custom formatting on a type
+        public void ImplementingCustomFormattingOnType()
+        {
+            PersonString p = new PersonString("Jairo", "Gomez");
+            string result = p.ToString("LF");
+            Console.WriteLine(result);
+            Console.ReadLine();
         }
 
     }
