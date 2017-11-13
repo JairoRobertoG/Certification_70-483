@@ -11,7 +11,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -711,7 +710,7 @@ namespace Certification.Chapters.Objective_2
         public void DisplayingDateTimeWithDifferentFormatString()
         {
             DateTime d = new DateTime(2013, 4, 22);
-            CultureInfo provider = new CultureInfo("en - US");
+            CultureInfo provider = new CultureInfo("en-US");
             Console.WriteLine(d.ToString("d", provider)); // Displays 4/22/2013
             Console.WriteLine(d.ToString("D", provider)); // Displays Monday, April 22, 2013
             Console.WriteLine(d.ToString("M", provider)); // Displays April 2
@@ -725,6 +724,16 @@ namespace Certification.Chapters.Objective_2
             PersonString p = new PersonString("Jairo", "Gomez");
             string result = p.ToString("LF");
             Console.WriteLine(result);
+            Console.ReadLine();
+        }
+
+        //LISTING 2-100 Creating a composite string formatting
+        public void CreatingCompisteStringFormatting()
+        {
+            int a = 1;
+            int b = 2;
+            string result = string.Format("a: {0}, b: {1}", a, b);
+            Console.WriteLine(result); // Displays ‘a: 1, b: 2’
             Console.ReadLine();
         }
 

@@ -1,7 +1,7 @@
-﻿using Certification.Chapters.Objective_1;
+﻿using Certification.StudyGuide_MCSD_;
+using Certification.Chapters.Objective_1;
 using Certification.Chapters.Objective_2;
-using Certification.StudyGuide_MCSD_;
-using System.Collections.Generic;
+using Certification.Chapters.Objective_3;
 
 namespace Certification
 {
@@ -9,9 +9,10 @@ namespace Certification
     {
         public static void Main()
         {
-            ManageProgramFlow ManageProgramFlow = new ManageProgramFlow();
             StudyGuide StudyGuide = new StudyGuide();
+            ManageProgramFlow ManageProgramFlow = new ManageProgramFlow();
             CreateAndUseTypes CreateAndUseTypes = new CreateAndUseTypes();
+            DebugApplicationsAndImplementSecurity DebugApplicationsAndImplementSecurity = new DebugApplicationsAndImplementSecurity();
 
             #region Methods Objective 1 Manage Program Flow
             //LISTING 1-1 Creating a thread with the Thread class
@@ -230,7 +231,7 @@ namespace Certification
             //LISTING 1-97 Using ExceptionDispatchInfo.Throw
             //multithreading_asynchronous_processing.UsingExceptionDispatchInfoThrow();
             #endregion
-
+            #region Create And Use Types
             //LISTING 2-2 Creating a custom struct
             //CreateAndUseTypes.CreatingCustomStruc();
 
@@ -353,7 +354,42 @@ namespace Certification
             //CreateAndUseTypes.DisplayingDateTimeWithDifferentFormatString();
 
             ////LISTING 2-99 Implementing custom formatting on a type
-            CreateAndUseTypes.ImplementingCustomFormattingOnType();
+            //CreateAndUseTypes.ImplementingCustomFormattingOnType();
+
+            //LISTING 2-100 Creating a composite string formatting
+            //CreateAndUseTypes.CreatingCompisteStringFormatting();
+            #endregion
+
+            //Objective 3.1: Validate application input
+            //LISTING 3-2 Saving a new customer to the database
+            //DebugApplicationsAndImplementSecurity.SavingNewCustomerToTheDataBase();
+            ////LISTING 3-6 Using configuration options when parsing a number
+            //DebugApplicationsAndImplementSecurity.UsingConfigurationOptionsWhenParsingNumber();
+
+            //LISTING 3-7 Using Convert with a null value
+            //DebugApplicationsAndImplementSecurity.UsingConvertWithNullValue();
+
+            //LISTING 3-10 Validate a ZIP Code with a regular expression
+            //DebugApplicationsAndImplementSecurity.ValidateZIPCodeWithRegularExpressionTest();
+
+            ////LISTING 3-13 Deserializing an object with the JavaScriptSerializer
+            //DebugApplicationsAndImplementSecurity.DeserializingAnObjectWithJavaScriptSerializer();
+
+            ////LISTING 3-14 A sample XML with person data
+            //DebugApplicationsAndImplementSecurity.ASampleXMLWithPersonData();
+
+            //Objective 3.2 Perform symmetric and asymmetric encryption
+            //LISTING 3-17 Use a symmetric encryption algorithm
+            //DebugApplicationsAndImplementSecurity.UseSymetricEncryptionAlgorithm();
+
+            //LISTING 3-18 Exporting a public key
+            //DebugApplicationsAndImplementSecurity.ExportingPublicKey();
+
+            //LISTING 3-19 Using a public and private key to encrypt and decrypt data
+            //DebugApplicationsAndImplementSecurity.UsingPublicAndPrivateKeyToEncryptAndDecryptData();
+
+            //LISTING 3-23 Using SHA256Managed to calculate a hash code
+            DebugApplicationsAndImplementSecurity.UsingSHA256ManagedToCalculateHashCode();
         }
     }
 }
