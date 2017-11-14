@@ -16,3 +16,7 @@ C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\Ent
 C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.xml
 C:\Users\jgome\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.dll
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.xml
+C:\Users\jairo\Documents\GitHub\Certification_70-483\Certification\bin\Debug\EntityFramework.SqlServer.xml

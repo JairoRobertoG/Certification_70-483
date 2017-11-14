@@ -389,7 +389,10 @@ namespace Certification
             //DebugApplicationsAndImplementSecurity.UsingPublicAndPrivateKeyToEncryptAndDecryptData();
 
             //LISTING 3-23 Using SHA256Managed to calculate a hash code
-            DebugApplicationsAndImplementSecurity.UsingSHA256ManagedToCalculateHashCode();
+            //DebugApplicationsAndImplementSecurity.UsingSHA256ManagedToCalculateHashCode();
+
+            //LISTING 3-24 Signing and verifying data with a certificate
+            DebugApplicationsAndImplementSecurity.SigningAndVerifyingDataWithCertificate();
         }
     }
 }
