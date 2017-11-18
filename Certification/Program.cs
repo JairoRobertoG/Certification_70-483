@@ -392,7 +392,16 @@ namespace Certification
             //DebugApplicationsAndImplementSecurity.UsingSHA256ManagedToCalculateHashCode();
 
             //LISTING 3-24 Signing and verifying data with a certificate
-            DebugApplicationsAndImplementSecurity.SigningAndVerifyingDataWithCertificate();
+            //DebugApplicationsAndImplementSecurity.SigningAndVerifyingDataWithCertificate();
+
+            ////LISTING 3-26 Imperative CAS
+            //DebugApplicationsAndImplementSecurity.ImperativeCAS();
+
+            //LISTING 3-27 Initializing a SecureString
+            //DebugApplicationsAndImplementSecurity.InitializingSecureString();
+
+            ////LISTING 3-28 Getting the value of a SecureString
+            //DebugApplicationsAndImplementSecurity.GettingValueOfSecureString();
         }
     }
 }

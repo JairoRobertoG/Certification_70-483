@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
@@ -321,7 +324,7 @@ namespace Certification.Chapters.Objective_3
             string textToSign = "Test paragraph";
             byte[] signature = Sign(textToSign, "cn = WouterDeKort");
             // Uncomment this line to make the verification step fail
-            signature[0] = 0;
+            //signature[0] = 0;
             Console.WriteLine(Verify(textToSign, signature));
         }
 
@@ -359,6 +362,69 @@ namespace Certification.Chapters.Objective_3
             my.Open(OpenFlags.ReadOnly);
             var certificate = my.Certificates[0];
             return certificate;
+        }
+
+        //LISTING 3-25 Declarative CAS
+        [FileIOPermission(SecurityAction.Demand, AllLocalFiles = FileIOPermissionAccess.Read)]
+        public void DeclarativeCAS()
+        {
+            // Method body
+        }
+
+        //LISTING 3-26 Imperative CAS
+        public void ImperativeCAS()
+        {
+            FileIOPermission f = new FileIOPermission(PermissionState.None);
+            f.AllLocalFiles = FileIOPermissionAccess.Read;
+            try
+            {
+                f.Demand();
+            }
+            catch (SecurityException s)
+            {
+                Console.WriteLine(s.Message);
+            }
+        }
+
+        //LISTING 3-27 Initializing a SecureString
+        public void InitializingSecureString()
+        {
+            using (SecureString ss = new SecureString())
+            {
+                Console.Write("Please enter password: ");
+                while (true)
+                {
+                    ConsoleKeyInfo cki = Console.ReadKey(true);
+                    if (cki.Key == ConsoleKey.Enter) break;
+                    ss.AppendChar(cki.KeyChar);
+                    Console.Write("*");
+                }
+
+                ss.MakeReadOnly();
+            }
+        }
+
+        //LISTING 3-28 Getting the value of a SecureString
+        private void ConvertToUnsecureString(SecureString securePassword)
+        {
+            IntPtr unmanagedString = IntPtr.Zero;
+            try
+            {
+                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(securePassword);
+                Console.WriteLine(Marshal.PtrToStringUni(unmanagedString));
+            }
+            finally
+            {
+                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+            }
+            Console.ReadLine();
+        }
+
+        public void GettingValueOfSecureString()
+        {
+            SecureString ss = new SecureString();
+            ss.AppendChar('p');
+            ConvertToUnsecureString(ss);
         }
     }
 }
