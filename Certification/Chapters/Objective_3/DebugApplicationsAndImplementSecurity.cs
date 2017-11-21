@@ -1,10 +1,12 @@
-﻿using Certification.Models;
+﻿using Certification.Classes;
+using Certification.Models;
 using Certification.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Cryptography;
@@ -12,9 +14,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Schema;
+using System.Diagnostics;
 
 namespace Certification.Chapters.Objective_3
 {
@@ -425,6 +429,145 @@ namespace Certification.Chapters.Objective_3
             SecureString ss = new SecureString();
             ss.AppendChar('p');
             ConvertToUnsecureString(ss);
+        }
+
+        //What is an assembly?
+        //Signing assemblies using a strong name
+        //LISTING 3-29 Inspecting the public key of a signed assembly
+        //Putting an assembly in the GAC
+        //Versioning assemblies
+        //LISTING 3-30 Redirecting assembly bindings to a newer version
+        //LISTING 3-31 Specifying additional locations for assemblies
+        //Creating a WinMD assembly
+        //Objective 3.4 Debug an application
+
+        //LISTING 3-33 A simple console application
+        private void TimerCallback(Object o)
+        {
+            Console.WriteLine("In TimerCallback: " + DateTime.Now);
+            GC.Collect();
+        }
+
+        public void SimpleConsoleApplication()
+        {
+            Timer t = new Timer(TimerCallback, null, 0, 2000);
+            Console.ReadLine();
+        }
+
+        //Creating and managing compiler directives
+        //LISTING 3-34 Checking for the debug symbol
+        public void CheckingForTheDebugSymbol()
+        {
+            #if DEBUG
+                Console.WriteLine("Debug mode");
+            #else
+                Console.WriteLine("Not debug");
+            #endif
+            Console.ReadLine();
+        }
+
+        //LISTING 3-35 Defining a custom symbol
+        //#define MySymbol
+        //..
+        public void DefiningCustomSymbol()
+        {
+            #if MySymbol
+                 Console.WriteLine("Custom symbol is defined");
+            #endif
+        }
+
+        //LISTING 3-36 Using preprocessor directives to target multiple platforms
+        private Assembly LoadAssembly<T>()
+        {
+            #if !WINRT
+                Assembly assembly = typeof(T).Assembly;
+            #else
+                Assembly assembly = typeof(T).GetTypeInfo().Assembly;
+            #endif
+
+            return assembly;
+        }
+
+        public void UsingPreprocessorDirectivesToTargetMultiplePlatforms()
+        {
+            LoadAssembly<Person>();
+        }
+
+        //LISTING 3-37 The warning and error directives
+        public void TheWarningAndErrorDirectives()
+        {
+            //#warning This code is obsolete
+            //#if DEBUG
+            //    #error Debug build is not allowed
+            //#endif
+        }
+
+        //LISTING 3-38 The line directive
+        #line 200 "OtherFileName"
+                int a; // line 200
+        #line default
+                int b; // line 4
+        #line hidden
+                int c; // hidden
+                int d; // line 7
+
+        //LISTING 3-39 The pragma warning directive
+        public void ThePragmaWarningDirective()
+        {
+            #pragma warning disable
+            while (false)
+            {
+                Console.WriteLine("Unreachable code");
+            }
+            #pragma warning restore
+        }
+
+        //LISTING 3-40 Disabling and enabling specific warnings
+        public void DisablingAndEnablingSpecificWarnings()
+        {
+            #pragma warning disable 0162, 0168
+            int i;
+            #pragma warning restore 0162
+            while (false)
+            {
+                Console.WriteLine("Unreachable code");
+            }
+            #pragma warning restore
+        }
+
+        //LISTING 3-41 Call a method only in a debug build
+        //[Conditional("DEBUG")]
+        private void Log(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        public void CallMethodOnlyInDebugBuild()
+        {
+            #if DEBUG
+            Log("Step1");
+            #endif
+        }
+
+        //LISTING 3-42 Applying the ConditionalAttribute
+        public void ApplyingTheConditionalAttribute()
+        {
+            Log("message");
+        }
+
+        //LISTING 3-43 Applying the DebuggerDisplayAttribute
+        public void ApplyingTheDebbugerDisplayAttribute()
+        {
+            var person = new PersonDebug();
+            person.FirstName = "Jairo";
+            person.LastName = "Gomez";
+        }
+
+        //LISTING 3-44 Examining PDB files
+        public void ExaminingPDBFiles()
+        {
+            Console.WriteLine("Hello World");
+            Console.ReadKey();
         }
     }
 }

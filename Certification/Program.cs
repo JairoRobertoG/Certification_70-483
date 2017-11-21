@@ -402,6 +402,33 @@ namespace Certification
 
             ////LISTING 3-28 Getting the value of a SecureString
             //DebugApplicationsAndImplementSecurity.GettingValueOfSecureString();
+
+            ////LISTING 3-33 A simple console application
+            //DebugApplicationsAndImplementSecurity.SimpleConsoleApplication();
+
+            ////LISTING 3-34 Checking for the debug symbol
+            //DebugApplicationsAndImplementSecurity.CheckingForTheDebugSymbol();
+
+            //LISTING 3-36 Using preprocessor directives to target multiple platforms
+            //DebugApplicationsAndImplementSecurity.UsingPreprocessorDirectivesToTargetMultiplePlatforms();
+
+            //LISTING 3-39 The pragma warning directive
+            //DebugApplicationsAndImplementSecurity.ThePragmaWarningDirective();
+
+            ////LISTING 3-40 Disabling and enabling specific warnings
+            //DebugApplicationsAndImplementSecurity.DisablingAndEnablingSpecificWarnings();
+
+            //LISTING 3-41 Call a method only in a debug build
+            //DebugApplicationsAndImplementSecurity.CallMethodOnlyInDebugBuild();
+
+            //LISTING 3-42 Applying the ConditionalAttribute
+            //DebugApplicationsAndImplementSecurity.ApplyingTheConditionalAttribute();
+
+            //LISTING 3-43 Applying the DebuggerDisplayAttribute
+            //DebugApplicationsAndImplementSecurity.ApplyingTheDebbugerDisplayAttribute();
+
+            ////LISTING 3-44 Examining PDB files
+            DebugApplicationsAndImplementSecurity.ExaminingPDBFiles();
         }
     }
 }
