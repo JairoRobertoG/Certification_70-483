@@ -428,7 +428,10 @@ namespace Certification
             //DebugApplicationsAndImplementSecurity.ApplyingTheDebbugerDisplayAttribute();
 
             ////LISTING 3-44 Examining PDB files
-            DebugApplicationsAndImplementSecurity.ExaminingPDBFiles();
+            //DebugApplicationsAndImplementSecurity.ExaminingPDBFiles();
+
+            //LISTING 3-45 Using the Debug class
+            //DebugApplicationsAndImplementSecurity.UsingTheDebugClass();
         }
     }
 }

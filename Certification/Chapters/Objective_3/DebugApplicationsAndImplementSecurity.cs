@@ -536,7 +536,7 @@ namespace Certification.Chapters.Objective_3
         }
 
         //LISTING 3-41 Call a method only in a debug build
-        //[Conditional("DEBUG")]
+        [Conditional("DEBUG")]
         private void Log(string message)
         {
             Console.WriteLine(message);
@@ -568,6 +568,18 @@ namespace Certification.Chapters.Objective_3
         {
             Console.WriteLine("Hello World");
             Console.ReadKey();
+        }
+
+        //Objective 3.5 Implement diagnostics in an application
+        //Logging and tracing
+        //LISTING 3-45 Using the Debug class
+        public void UsingTheDebugClass()
+        {
+            Debug.WriteLine("Starting application");
+            Debug.Indent();
+            int i = 1 + 2;
+            Debug.Assert(i == 3);
+            Debug.WriteLineIf(i > 0, "i is greater than 0");
         }
     }
 }
