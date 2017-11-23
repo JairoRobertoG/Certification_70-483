@@ -432,6 +432,12 @@ namespace Certification
 
             //LISTING 3-45 Using the Debug class
             //DebugApplicationsAndImplementSecurity.UsingTheDebugClass();
+
+            //LISTING 3-46 Using the TraceSource class
+            //DebugApplicationsAndImplementSecurity.UsingTheTraceSourceClass();
+
+            //LISTING 3-47 Configuring TraceListener.
+            DebugApplicationsAndImplementSecurity.ConfiguringTraceListener();
         }
     }
 }

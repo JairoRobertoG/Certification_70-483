@@ -581,5 +581,32 @@ namespace Certification.Chapters.Objective_3
             Debug.Assert(i == 3);
             Debug.WriteLineIf(i > 0, "i is greater than 0");
         }
+
+        //LISTING 3-46 Using the TraceSource class
+        public void UsingTheTraceSourceClass()
+        {
+            TraceSource traceSource = new TraceSource("myTraceSource", SourceLevels.All);
+            traceSource.TraceInformation("Tracing application..");
+            traceSource.TraceEvent(TraceEventType.Critical, 0, "Critical trace");
+            traceSource.TraceData(TraceEventType.Information, 1,
+            new object[] { "a", "b", "c" });
+            traceSource.Flush();
+            traceSource.Close();
+        }
+
+        //LISTING 3-47 Configuring TraceListener.
+        public void ConfiguringTraceListener()
+        {
+            Stream outputFile = File.Create("tracefile.txt");
+            TextWriterTraceListener textListener = new TextWriterTraceListener(outputFile);
+            TraceSource traceSource = new TraceSource("myTraceSource", SourceLevels.All);
+            traceSource.Listeners.Clear();
+            traceSource.Listeners.Add(textListener);
+            traceSource.TraceInformation("Trace output");
+            traceSource.Flush();
+            traceSource.Close();
+        }
+
+        //LISTING 3-48 Using a configuration file for tracing
     }
 }
