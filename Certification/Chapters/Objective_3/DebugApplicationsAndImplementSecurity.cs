@@ -608,5 +608,23 @@ namespace Certification.Chapters.Objective_3
         }
 
         //LISTING 3-48 Using a configuration file for tracing
+        //LISTING 3-49 Writing data to the event log
+        public void WritingDataToTheEventLog()
+        {
+            if (!EventLog.SourceExists("MySource"))
+            {
+                EventLog.CreateEventSource("MySource", "MyNewLog");
+                Console.WriteLine("CreatedEventSource");
+                Console.WriteLine("Please restart application");
+                Console.ReadKey();
+                return;
+            }
+
+            EventLog myLog = new EventLog();
+            myLog.Source = "MySource";
+            myLog.WriteEntry("Log event!");
+        }
+
+        //LISTING 3-50 Reading data from the event log.
     }
 }

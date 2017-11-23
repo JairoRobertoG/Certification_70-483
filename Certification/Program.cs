@@ -437,7 +437,10 @@ namespace Certification
             //DebugApplicationsAndImplementSecurity.UsingTheTraceSourceClass();
 
             //LISTING 3-47 Configuring TraceListener.
-            DebugApplicationsAndImplementSecurity.ConfiguringTraceListener();
-        }
+            //DebugApplicationsAndImplementSecurity.ConfiguringTraceListener();
+
+            //LISTING 3 - 49 Writing data to the event log
+            //DebugApplicationsAndImplementSecurity.WritingDataToTheEventLog();
+          }
     }
 }
